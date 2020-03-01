@@ -1,9 +1,10 @@
-package szymon.swic.plomyk
+package szymon.swic.plomyk.view
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import szymon.swic.plomyk.R
 
-class MainActivity : AppCompatActivity() {
+class SongBookActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
