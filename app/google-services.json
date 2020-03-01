@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098084086350",
+    "firebase_url": "https://plomyk-e6a13.firebaseio.com",
+    "project_id": "plomyk-e6a13",
+    "storage_bucket": "plomyk-e6a13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098084086350:android:a611dc0902b61e4c5b491f",
+        "android_client_info": {
+          "package_name": "szymon.swic.plomyk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098084086350-1n58f2q5rgui74vjqbare2k65uq2ccta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6MkS5QWW2LRWh9-PK-zcLMzS8Lg5gfmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098084086350-1n58f2q5rgui74vjqbare2k65uq2ccta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
