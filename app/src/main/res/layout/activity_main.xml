@@ -8,13 +8,32 @@
         android:layout_height="match_parent"
         tools:context=".view.SongBookActivity">
 
-    <Button
-            android:id="@+id/button"
+<!--    <Button-->
+<!--            android:id="@+id/btn_get"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Get songs"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--            android:id="@+id/btn_add"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="32dp"-->
+<!--            android:text="Add random song"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/btn_get"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+    <fragment
+            android:id="@+id/songlist_fragment"
+            android:name="szymon.swic.plomyk.view.SongListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Get songs"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout="@layout/songlist_fragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

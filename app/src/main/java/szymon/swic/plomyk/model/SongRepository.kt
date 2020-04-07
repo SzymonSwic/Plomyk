@@ -3,10 +3,11 @@ package szymon.swic.plomyk.model
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.Query
 
 class SongRepository {
 
-    private val TAG = "MainActivity"
+    private val TAG = "SongRepository"
     private val SONGS_COLLECTION = "songs"
 
     private lateinit var db: FirebaseFirestore
@@ -37,13 +38,18 @@ class SongRepository {
     }
 
     fun addSong(song: Song) {
-        db.collection(SONGS_COLLECTION).document(song.toString())
-            .set(song.getSongHashMap())
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+        db.collection(SONGS_COLLECTION)
+            .add(song.getSongMap())
+            .addOnSuccessListener { docRef ->
+                Log.d(
+                    TAG,
+                    "DocumentSnapshot successfully written with ID: $docRef"
+                )
+            }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
-    fun getAllSongs(){
+    fun getAllSongs() {
         db.collection(SONGS_COLLECTION)
             .get()
             .addOnSuccessListener { result ->
@@ -56,5 +62,7 @@ class SongRepository {
             }
     }
 
-
+    fun getAllSongsQuery(): Query {
+        return db.collection(SONGS_COLLECTION).orderBy("title", Query.Direction.ASCENDING)
+    }
 }

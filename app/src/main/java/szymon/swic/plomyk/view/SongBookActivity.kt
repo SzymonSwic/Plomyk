@@ -2,10 +2,10 @@ package szymon.swic.plomyk.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.factories.FactoryInjector
+import szymon.swic.plomyk.factories.Injector
 import szymon.swic.plomyk.viewmodel.SongBookVM
 
 class SongBookActivity : AppCompatActivity() {
@@ -16,18 +16,25 @@ class SongBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initViewModel()
-//        addSongTest()
-        button.setOnClickListener { songBookVM.getAllSongs() }
+//        initViewModel()
+
+        addFragment(SongListFragment.newInstance())
+
+
+//        btn_add.setOnClickListener { addSongTest() }
+//        btn_get.setOnClickListener { songBookVM.getAllSongs() }
     }
 
-    private fun initViewModel(){
-        val factory = FactoryInjector.getSongBookVMFactory()
+    private fun initViewModel() {
+        val factory = Injector.getSongBookVMFactory()
         songBookVM = ViewModelProvider(this, factory)
-                        .get(SongBookVM::class.java)
+            .get(SongBookVM::class.java)
     }
 
-    private fun addSongTest(){
-        songBookVM.addMockedSongs()
+    private fun addFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.songlist_fragment, fragment)
+            .commit()
     }
 }

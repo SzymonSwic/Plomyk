@@ -10,12 +10,12 @@ data class Song(val title: String,
         return "$title - $author"
     }
 
-    fun getSongHashMap(): HashMap<String, String> {
+    fun getSongMap(): Map<String, String> {
 
         return hashMapOf(
-            "title" to title,
+            "title"  to title,
             "author" to author,
-            "genre" to genre,
+            "genre"  to genre,
             "lyrics" to inlineChordLyrics
         )
     }
