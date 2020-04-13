@@ -1,10 +1,10 @@
 package szymon.swic.plomyk.model
 
 
-data class Song(val title: String,
-                val author: String,
-                val genre: String = "Brak",
-                val inlineChordLyrics: String){
+data class Song(val title: String = "No name song",
+                val author: String = "No author song",
+                val genre: String = "None",
+                val inlineChordLyrics: String = ""){
 
     override fun toString(): String {
         return "$title - $author"

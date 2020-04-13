@@ -1,7 +1,7 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.viewmodel
 
 import androidx.lifecycle.ViewModel
 
-class SongBookViewModel : ViewModel() {
+class SongViewVM : ViewModel() {
     // TODO: Implement the ViewModel
 }

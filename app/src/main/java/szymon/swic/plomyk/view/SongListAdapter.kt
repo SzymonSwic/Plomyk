@@ -3,7 +3,6 @@ package szymon.swic.plomyk.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -12,12 +11,15 @@ import szymon.swic.plomyk.R
 import szymon.swic.plomyk.model.Song
 
 
-class SongListAdapter(options: FirestoreRecyclerOptions<Song>) :
+class SongListAdapter(options: FirestoreRecyclerOptions<Song>, onSongListener: OnSongListener) :
     FirestoreRecyclerAdapter<Song, SongListAdapter.SongHolder>(options) {
+
+    var onSongClickListener = onSongListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
         return SongHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.songlist_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.songlist_item, parent, false),
+            onSongClickListener
         )
     }
 
@@ -25,13 +27,26 @@ class SongListAdapter(options: FirestoreRecyclerOptions<Song>) :
         holder.bind(model)
     }
 
-    inner class SongHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textTitle: TextView = itemView.text_title
-        var textAuthor: TextView = itemView.text_author
+    inner class SongHolder constructor(itemView: View, songListener: OnSongListener) :
+        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        lateinit var target_song: Song
+        var onSongListener: OnSongListener = songListener
 
         fun bind(song: Song) {
-            textTitle.text = song.title
-            textAuthor.text = song.author
+            itemView.text_title.text = song.title
+            itemView.text_author.text = song.author
+            itemView.text_song.text = "dupa"+song.inlineChordLyrics+"dupa"
+            target_song = song
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(p0: View?) {
+            onSongListener.onSongClick(target_song)
+        }
+    }
+
+    interface OnSongListener {
+        fun onSongClick(target_song: Song)
     }
 }
