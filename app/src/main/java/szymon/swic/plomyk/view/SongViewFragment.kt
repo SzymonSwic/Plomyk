@@ -40,7 +40,7 @@ class SongViewFragment(val song: Song) : Fragment() {
     private fun loadSong() {
         text_view_author.text = song.author
         text_view_title.text = song.title
-        text_view_song_lyrics.text = song.inlineChordLyrics
+        text_view_song_lyrics.text = song.lyrics
         Log.d(TAG, text_view_author.text.toString())
         Log.d(TAG, text_view_title.text.toString())
         Log.d(TAG, text_view_song_lyrics.text.toString())

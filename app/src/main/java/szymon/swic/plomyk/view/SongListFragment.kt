@@ -38,11 +38,10 @@ class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
         setupViewModel()
         setupSongListRecyclerView()
 
-        button.setOnClickListener { viewModel.addRandomSongs(5) }
+        button.setOnClickListener { viewModel.addRandomSongs(1) }
     }
 
     override fun onStart() {
-        Log.d(TAG, "OnStart")
         super.onStart()
         songListAdapter.startListening()
     }
@@ -60,7 +59,6 @@ class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
     }
 
     private fun setupSongListRecyclerView() {
-        Log.d(TAG, "RV Setup")
         songListAdapter = viewModel.initSongListAdapter(this)
 
         songListRecyclerView = view!!.findViewById(R.id.songlist_recycler_view)

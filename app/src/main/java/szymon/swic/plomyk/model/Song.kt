@@ -4,7 +4,7 @@ package szymon.swic.plomyk.model
 data class Song(val title: String = "No name song",
                 val author: String = "No author song",
                 val genre: String = "None",
-                val inlineChordLyrics: String = ""){
+                val lyrics: String = ""){
 
     override fun toString(): String {
         return "$title - $author"
@@ -16,7 +16,7 @@ data class Song(val title: String = "No name song",
             "title"  to title,
             "author" to author,
             "genre"  to genre,
-            "lyrics" to inlineChordLyrics
+            "lyrics" to lyrics
         )
     }
 }

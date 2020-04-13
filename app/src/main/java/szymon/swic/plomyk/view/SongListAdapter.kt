@@ -1,5 +1,6 @@
 package szymon.swic.plomyk.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import szymon.swic.plomyk.model.Song
 class SongListAdapter(options: FirestoreRecyclerOptions<Song>, onSongListener: OnSongListener) :
     FirestoreRecyclerAdapter<Song, SongListAdapter.SongHolder>(options) {
 
+    private val TAG = "SongListAdapter"
+
     var onSongClickListener = onSongListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
@@ -24,6 +27,7 @@ class SongListAdapter(options: FirestoreRecyclerOptions<Song>, onSongListener: O
     }
 
     override fun onBindViewHolder(holder: SongHolder, position: Int, model: Song) {
+        Log.d(TAG, "Lyrics from model: "+model.lyrics)
         holder.bind(model)
     }
 
@@ -36,7 +40,6 @@ class SongListAdapter(options: FirestoreRecyclerOptions<Song>, onSongListener: O
         fun bind(song: Song) {
             itemView.text_title.text = song.title
             itemView.text_author.text = song.author
-            itemView.text_song.text = "dupa"+song.inlineChordLyrics+"dupa"
             target_song = song
             itemView.setOnClickListener(this)
         }
