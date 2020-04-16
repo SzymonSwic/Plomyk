@@ -27,7 +27,6 @@ class SongListAdapter(options: FirestoreRecyclerOptions<Song>, onSongListener: O
     }
 
     override fun onBindViewHolder(holder: SongHolder, position: Int, model: Song) {
-        Log.d(TAG, "Lyrics from model: "+model.lyrics)
         holder.bind(model)
     }
 

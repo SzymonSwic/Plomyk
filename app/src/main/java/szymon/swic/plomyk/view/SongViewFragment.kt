@@ -2,6 +2,7 @@ package szymon.swic.plomyk.view
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,17 +34,18 @@ class SongViewFragment(val song: Song) : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SongViewVM::class.java)
-        loadSong()
-        Log.d(TAG, "Fragment Created")
+        setupView()
+
+        Log.d(TAG, "SongView Fragment Created")
     }
 
-    private fun loadSong() {
+    private fun setupView() {
         text_view_author.text = song.author
         text_view_title.text = song.title
-        text_view_song_lyrics.text = song.lyrics
-        Log.d(TAG, text_view_author.text.toString())
-        Log.d(TAG, text_view_title.text.toString())
-        Log.d(TAG, text_view_song_lyrics.text.toString())
+        text_view_song_lyrics.text = viewModel.getFormattedSpannableText(song.lyrics)
+        text_view_song_lyrics.movementMethod = ScrollingMovementMethod()
     }
+
+
 
 }
