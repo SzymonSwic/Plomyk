@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.songview_fragment.*
@@ -32,6 +31,7 @@ class SongViewFragment(val song: Song) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.songview_fragment, container, false)
     }
 
@@ -44,11 +44,15 @@ class SongViewFragment(val song: Song) : Fragment() {
         Log.d(TAG, "SongView Fragment Created")
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.songview_menu, menu)
+    }
+
     private fun setupView() {
         text_view_author.text = song.author
         text_view_title.text = song.title
         text_view_song_lyrics.text = viewModel.getFormattedSpannableText(song.lyrics, text_view_song_lyrics)
-//        text_view_song_lyrics.movementMethod = ScrollingMovementMethod()
     }
 
     private fun setupAutoscroll() {
@@ -58,16 +62,21 @@ class SongViewFragment(val song: Song) : Fragment() {
         text_view_song_lyrics.setOnLongClickListener {
             Log.d(TAG, "Long Click Event")
 
-            animator = ObjectAnimator.ofInt(songScrollView, "scrollY", text_view_song_lyrics.bottom).setDuration(5000)
+            animator = ObjectAnimator.ofInt(songScrollView, "scrollY", text_view_song_lyrics.bottom).setDuration(getAnimationDuration(text_view_song_lyrics))
             animator.start()
 
             true
         }
 
         text_view_song_lyrics.setOnClickListener {
-            if(animator == null) {
+            if(animator.isRunning) {
                 animator.cancel()
             }
         }
     }
+
+    private fun getAnimationDuration(textView: TextView): Long {
+        return (textView.lineCount*2000).toLong()
+    }
+
 }
