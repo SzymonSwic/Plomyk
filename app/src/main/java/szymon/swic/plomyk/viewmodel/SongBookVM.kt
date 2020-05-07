@@ -42,8 +42,8 @@ class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
                     "Anioły są takie ciche\n" +
                     "[G]\n" +
                     "zwłaszcza te w Bieszczadach\n" +
-                    "      [a]\n" +
-                    "gdy spotkasz takiego w górach\n" +
+                    "      [a]                      [t]      [t]         [t]                      [t]\n" +
+                    "gdy spotkasz takiego w górach asdfsadfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf\n" +
                     "  [e]\n" +
                     "wiele z nim nie pogadasz\n" +
                     "\n" +
