@@ -18,7 +18,7 @@ import szymon.swic.plomyk.viewmodel.SongViewVM
 
 class SongViewFragment(val song: Song) : Fragment() {
 
-    private val TAG = "SongViewFragment"
+    private val TAG = "SongViewFragment";
 
     companion object {
         fun newInstance(song: Song) = SongViewFragment(song)
@@ -76,7 +76,7 @@ class SongViewFragment(val song: Song) : Fragment() {
     }
 
     private fun getAnimationDuration(textView: TextView): Long {
-        return (textView.lineCount*2000).toLong()
+        return (textView.lineCount*700).toLong()
     }
 
 }
