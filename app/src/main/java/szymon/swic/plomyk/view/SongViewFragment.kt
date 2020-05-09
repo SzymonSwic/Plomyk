@@ -37,8 +37,9 @@ class SongViewFragment(val song: Song) : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SongViewVM::class.java)
+        setupViewModel()
         setupView()
+
         setupAutoscroll()
 
         Log.d(TAG, "SongView Fragment Created")
@@ -47,6 +48,13 @@ class SongViewFragment(val song: Song) : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.songview_menu, menu)
+    }
+
+    private fun setupViewModel() {
+        activity?.let {
+            viewModel = ViewModelProviders.of(it)
+                .get(SongViewVM::class.java)
+        }
     }
 
     private fun setupView() {
