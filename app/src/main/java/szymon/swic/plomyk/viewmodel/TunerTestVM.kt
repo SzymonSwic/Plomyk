@@ -11,9 +11,12 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class TunerTestVM : ViewModel() {
@@ -28,7 +31,8 @@ class TunerTestVM : ViewModel() {
     val audioEncoding = AudioFormat.ENCODING_PCM_8BIT
     val bufferSize = AudioRecord.getMinBufferSize(samplingFrequency, channelConfig, audioEncoding)
     val blockSize = 256
-    val updateOffset = 0
+    val updateOffset = 50
+    val updateDelay: Long = 500
     var buffer = ShortArray(blockSize)
 
 //      for recording process:
@@ -36,7 +40,7 @@ class TunerTestVM : ViewModel() {
     private var recorder: AudioRecord? = null
     private var RECORDING_FLAG = false
 
-    val frequency: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+    val frequency: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
 
     fun setRecorder() {
         recorder =
@@ -60,36 +64,50 @@ class TunerTestVM : ViewModel() {
         RECORDING_FLAG = false
     }
 
+
     private suspend fun getFrequencyStream() {
+        Log.d(TAG, "Recording Loop")
         while (RECORDING_FLAG) {
-            Log.d(TAG, "Recording Loop")
-            var lastUpdatedFreq = 0
+
+
+            var lastUpdatedFreq = 0.0
             recorder?.read(buffer, 0, blockSize)
             withContext(Main) {
-                var currFreq = calculate(buffer)
+                var currFreq = (calculate(buffer) * 100).roundToInt() / 100.0
+                Log.d("Volume", getBufferVolume(buffer).toString())
                 if (abs(currFreq - lastUpdatedFreq) >= updateOffset) {
                     frequency.value = currFreq
                     lastUpdatedFreq = currFreq
+                    delay(updateDelay)
                 }
-                Log.d("FreqLog", frequency.value.toString())
             }
         }
     }
 
-    private fun calculate(audioData: ShortArray): Int {
+    private fun getBufferVolume(audioData: ShortArray): Double {
 
-        val numSamples = audioData.size
+        val currBufferSize = audioData.size
+
+        for (p in 0 until currBufferSize - 1) {
+            if (audioData[p] < 0) audioData[p] = (audioData[p] * (-1)).toShort()
+        }
+        return audioData.average()
+    }
+
+    private fun calculate(audioData: ShortArray): Double {
+
+        val currBufferSize = audioData.size
         var numCrossing = 0
-        for (p in 0 until numSamples - 1) {
+        for (p in 0 until currBufferSize - 1) {
             if (audioData[p] * audioData[p + 1] <= 0) {
                 numCrossing++
             }
         }
 
-        val numSecondsRecorded = numSamples.toFloat() / samplingFrequency.toFloat()
+        val numSecondsRecorded = bufferSize.toFloat() / samplingFrequency.toFloat()
         val numCycles = (numCrossing / 2).toFloat()
         val frequency = numCycles / numSecondsRecorded
 
-        return frequency.toInt()
+        return frequency.toDouble()
     }
 }

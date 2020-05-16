@@ -85,7 +85,7 @@ class TunerTestFragment : Fragment() {
 
     private fun setFrequencyObserver() {
 
-        val frequencyObserver = Observer<Int> {
+        val frequencyObserver = Observer<Double> {
             text_curr_frequency.text = it.toString()
         }
 
