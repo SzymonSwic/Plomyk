@@ -70,5 +70,4 @@ class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
     override fun onSongClick(target_song: Song) {
         (activity as SongBookActivity).replaceFragment(SongViewFragment.newInstance(target_song))
     }
-
 }

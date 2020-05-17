@@ -44,39 +44,55 @@ class SongViewFragment(val song: Song) : Fragment() {
         Log.d(TAG, "SongView Fragment Created")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.songview_menu, menu)
+        inflater.inflate(R.menu.songview_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_chords -> {
+                showChordsDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setupView() {
         text_view_author.text = song.author
         text_view_title.text = song.title
-        text_view_song_lyrics.text = viewModel.getFormattedSpannableText(song.lyrics, text_view_song_lyrics)
+        text_view_song_lyrics.text =
+            viewModel.getFormattedSpannableText(song.lyrics, text_view_song_lyrics)
     }
 
     private fun setupAutoscroll() {
-        val songScrollView: ScrollView = view!!.findViewById(R.id.song_scrollview)
-
 
         text_view_song_lyrics.setOnLongClickListener {
             Log.d(TAG, "Long Click Event")
-
-            animator = ObjectAnimator.ofInt(songScrollView, "scrollY", text_view_song_lyrics.bottom).setDuration(getAnimationDuration(text_view_song_lyrics))
-            animator.start()
-
+            getTextAnimator().start()
             true
         }
 
         text_view_song_lyrics.setOnClickListener {
-            if(animator.isRunning) {
-                animator.cancel()
+            Log.d(TAG, "On Click Event")
+            if (getTextAnimator().isRunning) {
+                getTextAnimator().cancel()
             }
         }
     }
 
-    private fun getAnimationDuration(textView: TextView): Long {
-        return (textView.lineCount*700).toLong()
+    private fun showChordsDialog() {
+        val dialog = viewModel.getChordsDialog(context!!)
+        dialog.show(fragmentManager!!, "chords_dialog")
     }
 
+    private fun getTextAnimator(): ObjectAnimator {
+        if(!this::animator.isInitialized) {
+            animator = ObjectAnimator
+                .ofInt(song_scrollview, "scrollY", text_view_song_lyrics.bottom)
+                .setDuration(viewModel.getAnimationDuration(text_view_song_lyrics))
+        }
+        return animator
+    }
 }

@@ -1,6 +1,6 @@
 package szymon.swic.plomyk.viewmodel
 
-import android.animation.ObjectAnimator
+import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -8,9 +8,8 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
-import kotlinx.android.synthetic.main.songview_fragment.*
-import java.lang.Math.ceil
-import kotlin.math.ceil
+import szymon.swic.plomyk.view.ChordGridDialog
+
 
 class SongViewVM : ViewModel() {
     private val TAG = "SongView VM"
@@ -48,5 +47,32 @@ class SongViewVM : ViewModel() {
             text.replace(index - shiftCounter, index - shiftCounter + 1, "")
         }
         return text
+    }
+
+    fun getChordsDialog(fragmentContext: Context): ChordGridDialog {
+        return ChordGridDialog(getChordImagesIds(fragmentContext))
+    }
+
+    fun getAnimationDuration(textView: TextView): Long {
+        return (textView.lineCount * 700).toLong()
+    }
+
+    private fun getChordImagesIds(fragmentContext: Context): Array<Int> {
+        val resultList = mutableListOf<Int>()
+
+        songChords.forEach {
+            val soundName = it.removeSurrounding("[","]")
+            val resourceName = "$soundName.png"
+            Log.d(TAG, "Resource: $resourceName")
+            resultList.add(
+                fragmentContext.resources.getIdentifier(
+                    resourceName,
+                    "drawable",
+                    fragmentContext.packageName
+                )
+            )
+        }
+
+        return resultList.toTypedArray()
     }
 }
