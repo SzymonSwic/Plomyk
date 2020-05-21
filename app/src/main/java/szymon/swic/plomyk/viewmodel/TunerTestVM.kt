@@ -26,13 +26,14 @@ class TunerTestVM : ViewModel() {
     private val TAG = "TunerVM";
 
     val audioSource = MediaRecorder.AudioSource.MIC
-    val samplingFrequency = 8000
+    val samplingFrequency = 44100
     val channelConfig = AudioFormat.CHANNEL_IN_STEREO
-    val audioEncoding = AudioFormat.ENCODING_PCM_8BIT
+    val audioEncoding = AudioFormat.ENCODING_PCM_16BIT
     val bufferSize = AudioRecord.getMinBufferSize(samplingFrequency, channelConfig, audioEncoding)
-    val blockSize = 256
-    val updateOffset = 50
-    val updateDelay: Long = 500
+    val blockSize = 512
+    val updateOffset = 5
+    val updateDelay: Long = 100
+    val volumeThreshold: Int = 100
     var buffer = ShortArray(blockSize)
 
 //      for recording process:
@@ -42,15 +43,20 @@ class TunerTestVM : ViewModel() {
 
     val frequency: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
 
-    fun setRecorder() {
-        recorder =
-            AudioRecord(audioSource, samplingFrequency, channelConfig, audioEncoding, bufferSize)
+    private fun setRecorder() {
+        if(recorder == null) {
+            recorder =
+                AudioRecord(audioSource, samplingFrequency, channelConfig, audioEncoding, bufferSize)
+        }
+
+        Log.d(TAG, "Recorder init")
         Log.d(TAG, recorder?.state.toString())
         Log.d(TAG, recorder?.sampleRate.toString())
     }
 
     fun startAnalysing() {
         Log.d(TAG, "Start Analysing")
+        setRecorder()
         CoroutineScope(Default).launch {
             recorder?.startRecording()
             RECORDING_FLAG = true
@@ -74,11 +80,15 @@ class TunerTestVM : ViewModel() {
             recorder?.read(buffer, 0, blockSize)
             withContext(Main) {
                 var currFreq = (calculate(buffer) * 100).roundToInt() / 100.0
-                Log.d("Volume", getBufferVolume(buffer).toString())
-                if (abs(currFreq - lastUpdatedFreq) >= updateOffset) {
+
+                val volume = getBufferVolume(buffer)
+                Log.d("Volume", volume.toString())
+                if (volume > 900 && abs(currFreq - lastUpdatedFreq) >= updateOffset) {
                     frequency.value = currFreq
                     lastUpdatedFreq = currFreq
                     delay(updateDelay)
+                } else {
+                    frequency.value = 0.0
                 }
             }
         }

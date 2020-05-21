@@ -75,7 +75,6 @@ class TunerTestFragment : Fragment() {
             viewModel = ViewModelProviders.of(it)
                 .get(TunerTestVM::class.java)
         }
-        viewModel.setRecorder()
     }
 
     private fun setupView() {
