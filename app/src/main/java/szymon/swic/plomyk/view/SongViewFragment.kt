@@ -83,7 +83,7 @@ class SongViewFragment(val song: Song) : Fragment() {
     }
 
     private fun showChordsDialog() {
-        val dialog = viewModel.getChordsDialog(context!!)
+        val dialog = viewModel.getChordsDialog(activity!!.applicationContext)
         dialog.show(fragmentManager!!, "chords_dialog")
     }
 

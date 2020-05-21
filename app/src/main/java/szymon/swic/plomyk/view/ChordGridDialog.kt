@@ -25,6 +25,10 @@ class ChordGridDialog(private val listOfChordsImagesId: Array<Int>): DialogFragm
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        listOfChordsImagesId.forEach {
+            Log.d("ChordGridDialog", it.toString())
+        }
+
         setupChordGridRecyclerView()
     }
 

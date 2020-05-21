@@ -61,9 +61,12 @@ class SongViewVM : ViewModel() {
         val resultList = mutableListOf<Int>()
 
         songChords.forEach {
-            val soundName = it.removeSurrounding("[","]")
-            val resourceName = "$soundName.png"
-            Log.d(TAG, "Resource: $resourceName")
+            val soundName = it.removeSurrounding("[", "]")
+            val resourceName =
+                if (soundName[0].isUpperCase())
+                     "chord_${soundName.toLowerCase()}_major"
+                else "chord_${soundName.toLowerCase()}_minor"
+//            Log.d(TAG, "Resource: $resourceName")
             resultList.add(
                 fragmentContext.resources.getIdentifier(
                     resourceName,
@@ -71,6 +74,7 @@ class SongViewVM : ViewModel() {
                     fragmentContext.packageName
                 )
             )
+//            Log.d(TAG, "ResourceID: ${resultList.last()}")
         }
 
         return resultList.toTypedArray()
