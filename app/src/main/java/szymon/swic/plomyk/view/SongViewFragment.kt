@@ -1,13 +1,10 @@
 package szymon.swic.plomyk.view
 
 import android.animation.ObjectAnimator
+import android.graphics.Typeface
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.*
-import android.widget.ScrollView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.songview_fragment.*
@@ -63,8 +60,18 @@ class SongViewFragment(val song: Song) : Fragment() {
         text_view_author.text = song.author
         text_view_title.text = song.title
         text_view_song_lyrics.text =
-            viewModel.getFormattedSpannableText(song.lyrics, text_view_song_lyrics)
-    }
+            viewModel.getFormattedSpannableText(song.lyrics)
+
+        button_key_up.setOnClickListener {
+            Log.d(TAG, "KEY UP")
+            text_view_song_lyrics.text = viewModel.getTransposedText(1)
+        }
+
+        button_key_down.setOnClickListener {
+            Log.d(TAG, "KEY DOWN")
+            text_view_song_lyrics.text = viewModel.getTransposedText(-1)
+        }
+}
 
     private fun setupAutoscroll() {
 
