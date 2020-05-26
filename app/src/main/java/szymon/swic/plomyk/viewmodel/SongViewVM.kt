@@ -1,5 +1,6 @@
 package szymon.swic.plomyk.viewmodel
 
+import android.app.Application
 import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
@@ -8,6 +9,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
+import szymon.swic.plomyk.R
 import szymon.swic.plomyk.view.ChordGridDialog
 import java.util.*
 
@@ -23,11 +25,11 @@ class SongViewVM : ViewModel() {
     private var currKeyShift = 0
     private lateinit var spannedText: SpannableStringBuilder
 
-    fun getFormattedSpannableText(inputText: String): SpannableStringBuilder {
+    fun getFormattedSpannableText(inputText: String, appContext: Context): SpannableStringBuilder {
         rawLyricsText = inputText
         val chordRegex = Regex("\\[(.*?)]")
         val matchResult = chordRegex.findAll(rawLyricsText)
-        spannedText = formatChordsStyle(SpannableStringBuilder(rawLyricsText), matchResult)
+        spannedText = formatChordsStyle(SpannableStringBuilder(rawLyricsText), matchResult, appContext)
 
         songChordsSet = matchResult.map { it.value }.toSet()
         Log.d(TAG, songChordsSet.toString())
@@ -37,13 +39,15 @@ class SongViewVM : ViewModel() {
 
     private fun formatChordsStyle(
         text: SpannableStringBuilder,
-        chordSequences: Sequence<MatchResult>
+        chordSequences: Sequence<MatchResult>,
+        appContext: Context
     ): SpannableStringBuilder {
         val bracketsIndexes = mutableListOf<Int>()
         val tmpChordsPositionIndexes = mutableListOf<Int>()
         for (singleMatch in chordSequences) {
             text.setSpan(
-                ForegroundColorSpan(Color.RED),
+                ForegroundColorSpan(appContext.getColor(R.color.colorAccent)),
+
                 singleMatch.range.first,
                 singleMatch.range.last,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -104,10 +108,10 @@ class SongViewVM : ViewModel() {
         return resultList.toTypedArray()
     }
 
-    fun getTransposedText(interval: Int): SpannableStringBuilder {
+    fun getTransposedText(interval: Int, appContext: Context): SpannableStringBuilder {
         changeKey(interval)
 
-        return getFormattedSpannableText(rawLyricsText)
+        return getFormattedSpannableText(rawLyricsText, appContext)
     }
 
     private fun changeKey(interval: Int) {

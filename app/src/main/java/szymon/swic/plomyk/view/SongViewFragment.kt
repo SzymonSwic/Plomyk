@@ -60,16 +60,16 @@ class SongViewFragment(val song: Song) : Fragment() {
         text_view_author.text = song.author
         text_view_title.text = song.title
         text_view_song_lyrics.text =
-            viewModel.getFormattedSpannableText(song.lyrics)
+            viewModel.getFormattedSpannableText(song.lyrics, context!!)
 
         button_key_up.setOnClickListener {
             Log.d(TAG, "KEY UP")
-            text_view_song_lyrics.text = viewModel.getTransposedText(1)
+            text_view_song_lyrics.text = viewModel.getTransposedText(1, context!!)
         }
 
         button_key_down.setOnClickListener {
             Log.d(TAG, "KEY DOWN")
-            text_view_song_lyrics.text = viewModel.getTransposedText(-1)
+            text_view_song_lyrics.text = viewModel.getTransposedText(-1, context!!)
         }
 }
 
