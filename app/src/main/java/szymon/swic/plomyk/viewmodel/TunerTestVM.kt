@@ -26,12 +26,12 @@ class TunerTestVM : ViewModel() {
     private val TAG = "TunerVM";
 
     val audioSource = MediaRecorder.AudioSource.MIC
-    val samplingFrequency = 44100
+    val samplingFrequency = 8000
     val channelConfig = AudioFormat.CHANNEL_IN_STEREO
-    val audioEncoding = AudioFormat.ENCODING_PCM_16BIT
+    val audioEncoding = AudioFormat.ENCODING_PCM_8BIT
     val bufferSize = AudioRecord.getMinBufferSize(samplingFrequency, channelConfig, audioEncoding)
-    val blockSize = 512
-    val updateOffset = 5
+    val blockSize = bufferSize
+    val updateOffset = 0
     val updateDelay: Long = 100
     val volumeThreshold: Int = 100
     var buffer = ShortArray(blockSize)
