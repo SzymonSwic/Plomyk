@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.songlist_fragment.*
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.model.Song
 import szymon.swic.plomyk.viewmodel.SongBookVM
+import szymon.swic.plomyk.viewmodel.TunerVM
 
 class SongListFragment : Fragment(), OnSongListener {
 
@@ -36,8 +37,8 @@ class SongListFragment : Fragment(), OnSongListener {
         setupViewModel()
         setupSongListRecyclerView()
 
-        button.setOnClickListener { viewModel.addMockedSong() } //@todo wyebac razem z odniesieniem w xml
-        buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(newInstance()) } //@todo dodac przechodzenie do fragmentu ze stroikiem
+        //@todo TunerTestFragment vs TunerActivity
+        //buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

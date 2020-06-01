@@ -19,13 +19,6 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
 
-        <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add song" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/buttonTuner"
                 android:layout_width="wrap_content"
