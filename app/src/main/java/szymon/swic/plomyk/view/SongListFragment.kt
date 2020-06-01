@@ -36,7 +36,8 @@ class SongListFragment : Fragment(), OnSongListener {
         setupViewModel()
         setupSongListRecyclerView()
 
-        button.setOnClickListener { viewModel.addMockedSong() }
+        button.setOnClickListener { viewModel.addMockedSong() } //@todo wyebac razem z odniesieniem w xml
+        buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(newInstance()) } //@todo dodac przechodzenie do fragmentu ze stroikiem
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
