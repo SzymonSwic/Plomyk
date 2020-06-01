@@ -2,9 +2,7 @@ package szymon.swic.plomyk.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +12,7 @@ import szymon.swic.plomyk.R
 import szymon.swic.plomyk.model.Song
 import szymon.swic.plomyk.viewmodel.SongBookVM
 
-class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
+class SongListFragment : Fragment(), OnSongListener {
 
     private val TAG = "SongListFragment"
 
@@ -38,17 +36,12 @@ class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
         setupViewModel()
         setupSongListRecyclerView()
 
-        button.setOnClickListener { viewModel.addRandomSongs(1) }
+        button.setOnClickListener { viewModel.addMockedSong() }
     }
 
-    override fun onStart() {
-        super.onStart()
-        songListAdapter.startListening()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        songListAdapter.stopListening()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_bar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun setupViewModel() {
@@ -59,12 +52,14 @@ class SongListFragment : Fragment(), SongListAdapter.OnSongListener {
     }
 
     private fun setupSongListRecyclerView() {
-        songListAdapter = viewModel.initSongListAdapter(this)
 
-        songListRecyclerView = view!!.findViewById(R.id.songlist_recycler_view)
-        songListRecyclerView.layoutManager = LinearLayoutManager(this@SongListFragment.context)
-        songListRecyclerView.adapter = songListAdapter
-        songListRecyclerView.setHasFixedSize(true)
+        songListAdapter = viewModel.initSongListAdapter(this@SongListFragment)
+
+        songlist_recycler_view.apply {
+            layoutManager = LinearLayoutManager(this@SongListFragment.context)
+            adapter = songListAdapter
+            setHasFixedSize(true)
+        }
     }
 
     override fun onSongClick(target_song: Song) {

@@ -1,9 +1,12 @@
 package szymon.swic.plomyk.model
 
 import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+
 
 class SongRepository {
 
@@ -49,17 +52,31 @@ class SongRepository {
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
-    fun getAllSongs() {
-        db.collection(SONGS_COLLECTION)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                }
+    fun getAllSongs(): MutableList<Song> {
+
+
+        var songList: MutableList<Song> = ArrayList()
+
+        val queryResult = db.collection(SONGS_COLLECTION).get()
+
+        while (!queryResult.isComplete){
+            //add timeout later
+        }
+
+        for (document in queryResult.result!!.documents) {
+            Log.d(TAG, document.id)
+            val newSong: Song = document.toObject(Song::class.java)!!
+            songList.add(newSong)
+            songList.forEach {
+                Log.d(TAG, "XD $it")
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
-            }
+        }
+
+        songList.forEach {
+            Log.d(TAG, "koniec $it")
+        }
+
+        return songList
     }
 
     fun getAllSongsQuery(): Query {
