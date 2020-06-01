@@ -40,11 +40,13 @@ class SongViewFragment(val song: Song) : Fragment() {
 
         Log.d(TAG, "SongView Fragment Created")
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.songview_menu, menu)
-    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.songview_menu, menu)
+//
+//        val searchItem = menu.findItem(R.id.)
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
