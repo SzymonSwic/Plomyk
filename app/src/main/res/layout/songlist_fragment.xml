@@ -12,22 +12,18 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <LinearLayout
-            android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonTuner"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/buttonTuner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                app:srcCompat="@drawable/button_tuner" />
-
-    </LinearLayout>
+            android:layout_alignRight="@id/songlist_recycler_view"
+            android:layout_alignBottom="@id/songlist_recycler_view"
+            android:clickable="true"
+            android:focusable="true"
+            app:maxImageSize="74dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:srcCompat="@drawable/button_tuner" />
 
 
 </RelativeLayout>

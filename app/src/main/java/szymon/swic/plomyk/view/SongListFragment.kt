@@ -38,7 +38,7 @@ class SongListFragment : Fragment(), OnSongListener {
         setupSongListRecyclerView()
 
         //@todo TunerTestFragment vs TunerActivity
-        //buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment() }
+        buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerTestFragment.newInstance()) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
