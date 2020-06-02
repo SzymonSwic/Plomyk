@@ -10,20 +10,18 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark" />
 
-    <LinearLayout
-            android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonTuner"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
-
-        <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add song" />
-
-    </LinearLayout>
+            android:layout_alignRight="@id/songlist_recycler_view"
+            android:layout_alignBottom="@id/songlist_recycler_view"
+            android:clickable="true"
+            android:focusable="true"
+            app:maxImageSize="74dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:srcCompat="@drawable/button_tuner" />
 
 
 </RelativeLayout>

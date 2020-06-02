@@ -14,6 +14,7 @@ import szymon.swic.plomyk.R
 import szymon.swic.plomyk.factories.Injector
 import szymon.swic.plomyk.model.Song
 import szymon.swic.plomyk.viewmodel.SongBookVM
+import szymon.swic.plomyk.viewmodel.TunerVM
 
 class SongListFragment : Fragment(), OnSongClickListener {
 
@@ -40,7 +41,8 @@ class SongListFragment : Fragment(), OnSongClickListener {
         setupViewModel()
         setupSongListRecyclerView()
 
-        button.setOnClickListener { viewModel.addMockedSong() }
+        //@todo TunerTestFragment vs TunerActivity
+        buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerTestFragment.newInstance()) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
