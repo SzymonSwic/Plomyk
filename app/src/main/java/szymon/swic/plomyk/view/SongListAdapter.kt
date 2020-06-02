@@ -16,13 +16,13 @@ import java.util.*
 
 
 class SongListAdapter(
-    private var content: MutableList<Song>,
+    private val contentOriginal: MutableList<Song>,
     private val onSongClickListener: OnSongClickListener
 ) : RecyclerView.Adapter<SongListAdapter.SongHolder>(), Filterable {
 
     private val TAG = "SongListAdapter"
 
-    private val filterableList = content
+    private var filterableList = contentOriginal.getCopy()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
         Log.d(TAG, "ViewHolder Created")
@@ -33,11 +33,11 @@ class SongListAdapter(
     }
 
     override fun onBindViewHolder(holder: SongHolder, position: Int) {
-        holder.bind(content[position])
+        holder.bind(filterableList[position])
         Log.d(TAG, "Song Binded")
     }
 
-    override fun getItemCount(): Int = content.size
+    override fun getItemCount(): Int = filterableList.size
 
     inner class SongHolder constructor(
         itemView: View,
@@ -65,13 +65,14 @@ class SongListAdapter(
 
     private val songFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
+            filterableList = contentOriginal.getCopy()
             val filteredSongs = mutableListOf<Song>()
             if (constraint == null || constraint.isEmpty()) {
-                filteredSongs.addAll(filterableList)
+                filteredSongs.addAll(contentOriginal)
             } else {
                 val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
 
-                for (song in filterableList) {
+                for (song in contentOriginal) {
                     if (song.title.toLowerCase(Locale.ROOT).contains(filterPattern) ||
                         song.author.toLowerCase(Locale.ROOT).contains(filterPattern)
                     ) {
@@ -86,9 +87,14 @@ class SongListAdapter(
         }
 
         override fun publishResults(constraint: CharSequence?, filterResult: FilterResults?) {
-            content.clear()
-            content.addAll(filterResult?.values as Collection<Song>)
+            filterableList.clear()
+            filterableList.addAll(filterResult?.values as Collection<Song>)
             notifyDataSetChanged()
         }
+    }
+
+    fun <T> List<T>.getCopy(): MutableList<T> {
+        val original = this
+        return mutableListOf<T>().apply { addAll(original) }
     }
 }

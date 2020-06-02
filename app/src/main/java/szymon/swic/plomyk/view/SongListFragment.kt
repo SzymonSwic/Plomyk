@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +31,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.songlist_fragment, container, false)
     }
 
@@ -43,13 +44,10 @@ class SongListFragment : Fragment(), OnSongClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.search_bar_menu, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = searchItem.actionView as SearchView
-
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
@@ -61,6 +59,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
                 return false
             }
         })
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun setupViewModel() {
