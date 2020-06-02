@@ -17,7 +17,7 @@ import java.util.*
 
 class SongListAdapter(
     private var content: MutableList<Song>,
-    private val onSongClickListener: OnSongListener
+    private val onSongClickListener: OnSongClickListener
 ) : RecyclerView.Adapter<SongListAdapter.SongHolder>(), Filterable {
 
     private val TAG = "SongListAdapter"
@@ -41,7 +41,7 @@ class SongListAdapter(
 
     inner class SongHolder constructor(
         itemView: View,
-        private var songClickListener: OnSongListener
+        private var songClickListener: OnSongClickListener
     ) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
@@ -63,7 +63,7 @@ class SongListAdapter(
         return songFilter
     }
 
-    val songFilter = object : Filter() {
+    private val songFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val filteredSongs = mutableListOf<Song>()
             if (constraint == null || constraint.isEmpty()) {

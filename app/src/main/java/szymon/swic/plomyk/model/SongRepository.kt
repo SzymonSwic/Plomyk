@@ -54,26 +54,16 @@ class SongRepository {
 
     fun getAllSongs(): MutableList<Song> {
 
-
         var songList: MutableList<Song> = ArrayList()
 
         val queryResult = db.collection(SONGS_COLLECTION).get()
 
-        while (!queryResult.isComplete){
-            //add timeout later
-        }
+        while (!queryResult.isComplete){}
 
         for (document in queryResult.result!!.documents) {
             Log.d(TAG, document.id)
             val newSong: Song = document.toObject(Song::class.java)!!
             songList.add(newSong)
-            songList.forEach {
-                Log.d(TAG, "XD $it")
-            }
-        }
-
-        songList.forEach {
-            Log.d(TAG, "koniec $it")
         }
 
         return songList

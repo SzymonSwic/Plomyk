@@ -11,7 +11,6 @@ data class Song(val title: String = "No name song",
     }
 
     fun getSongMap(): Map<String, String> {
-
         return hashMapOf(
             "title"  to title,
             "author" to author,

@@ -9,7 +9,7 @@ import szymon.swic.plomyk.model.SongRepository
 import szymon.swic.plomyk.view.SongListAdapter
 import szymon.swic.plomyk.model.anioly
 import szymon.swic.plomyk.model.wind
-import szymon.swic.plomyk.view.OnSongListener
+import szymon.swic.plomyk.view.OnSongClickListener
 
 class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
 
@@ -23,7 +23,7 @@ class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
 
     private fun getAllSongsQuery() = songRepository.getAllSongsQuery()
 
-    fun initSongListAdapter(onSongClickListener: OnSongListener): SongListAdapter {
+    fun initSongListAdapter(onSongClickListener: OnSongClickListener): SongListAdapter {
         Log.d(TAG, "adapter init")
         val allSongs = getAllSongs()
         return SongListAdapter(allSongs, onSongClickListener)

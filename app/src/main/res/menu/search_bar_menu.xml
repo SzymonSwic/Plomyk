@@ -1,11 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.home.activities.TransactionSearchActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/search_bar"
+            android:id="@+id/action_search"
             android:icon="@drawable/icon_search"
             android:title="Search"
             app:actionViewClass="androidx.appcompat.widget.SearchView"
-            app:showAsAction="always" />
+            app:showAsAction="ifRoom|collapseActionView" />
 </menu>

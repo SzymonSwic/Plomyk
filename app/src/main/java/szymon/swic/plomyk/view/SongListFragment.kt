@@ -3,16 +3,19 @@ package szymon.swic.plomyk.view
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.factories.Injector
 import szymon.swic.plomyk.model.Song
 import szymon.swic.plomyk.viewmodel.SongBookVM
 
-class SongListFragment : Fragment(), OnSongListener {
+class SongListFragment : Fragment(), OnSongClickListener {
 
     private val TAG = "SongListFragment"
 
@@ -40,13 +43,30 @@ class SongListFragment : Fragment(), OnSongListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_bar_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.search_bar_menu, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView: SearchView = searchItem.actionView as SearchView
+
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newQueryText: String?): Boolean {
+                songListAdapter.filter.filter(newQueryText)
+                return false
+            }
+        })
     }
 
     private fun setupViewModel() {
         activity?.let {
-            viewModel = ViewModelProviders.of(it)
+            val factory = Injector.getSongBookVMFactory()
+            viewModel = ViewModelProviders.of(this, factory)
                 .get(SongBookVM::class.java)
         }
     }
