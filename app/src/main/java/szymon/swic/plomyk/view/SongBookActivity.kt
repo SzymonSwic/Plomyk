@@ -12,7 +12,6 @@ class SongBookActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         replaceFragment(SongListFragment.newInstance())
- //       replaceFragment(TunerTestFragment.newInstance())
     }
 
     fun replaceFragment(fragment: Fragment) {

@@ -47,6 +47,7 @@ class TunerTestVM : ViewModel() {
 
     fun startAnalysing() {
         Log.d(TAG, "Start Analysing")
+        if(recorder == null) setRecorder()
         CoroutineScope(Default).launch {
             recorder?.startRecording()
             RECORDING_FLAG = true
