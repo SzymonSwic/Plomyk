@@ -19,7 +19,7 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class TunerTestVM : ViewModel() {
+class TunerVM : ViewModel() {
 
 //      parameters for recorder configuration:
 
@@ -75,8 +75,6 @@ class TunerTestVM : ViewModel() {
         Log.d(TAG, "Recording Loop")
         while (RECORDING_FLAG) {
 
-
-            var lastUpdatedFreq = 0.0
             recorder?.read(buffer, 0, blockSize)
             withContext(Main) {
                 var currFreq = (calculate(buffer) * 100).roundToInt() / 100.0
@@ -85,7 +83,6 @@ class TunerTestVM : ViewModel() {
                 Log.d("Volume", volume.toString())
                 if (volume < volumeThreshold) {
                     frequency.value = currFreq
-                    lastUpdatedFreq = currFreq
                     delay(updateDelay)
                 }
             }

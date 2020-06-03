@@ -12,18 +12,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.tuner_fragment.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.viewmodel.TunerTestVM
+import szymon.swic.plomyk.viewmodel.TunerVM
 
 
-class TunerTestFragment : Fragment() {
+class TunerFragment : Fragment() {
 
     private var permissionToRecordGranted = false
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
 
-    private lateinit var viewModel: TunerTestVM
+    private lateinit var viewModel: TunerVM
 
     companion object {
-        fun newInstance() = TunerTestFragment()
+        fun newInstance() = TunerFragment()
     }
 
     override fun onCreateView(
@@ -73,7 +73,7 @@ class TunerTestFragment : Fragment() {
     private fun setupViewModel() {
         activity?.let {
             viewModel = ViewModelProviders.of(it)
-                .get(TunerTestVM::class.java)
+                .get(TunerVM::class.java)
         }
     }
 
