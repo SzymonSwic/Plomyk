@@ -56,7 +56,7 @@ class SongRepository {
 
         var songList: MutableList<Song> = ArrayList()
 
-        val queryResult = db.collection(SONGS_COLLECTION).get()
+        val queryResult = db.collection(SONGS_COLLECTION).orderBy("title", Query.Direction.ASCENDING).get()
 
         while (!queryResult.isComplete){}
 

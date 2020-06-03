@@ -2,6 +2,7 @@ package szymon.swic.plomyk.view
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +31,6 @@ class SongListFragment : Fragment(), OnSongClickListener {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        activity?.title = ""
         return inflater.inflate(R.layout.songlist_fragment, container, false)
     }
 
@@ -38,6 +38,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
         setupSongListRecyclerView()
+        activity?.title = ""
 
         buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance()) }
     }
