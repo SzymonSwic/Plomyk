@@ -32,6 +32,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+        activity?.title = ""
         return inflater.inflate(R.layout.songlist_fragment, container, false)
     }
 

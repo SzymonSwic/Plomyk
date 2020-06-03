@@ -47,7 +47,6 @@ class SongViewVM : ViewModel() {
         for (singleMatch in chordSequences) {
             text.setSpan(
                 ForegroundColorSpan(appContext.getColor(R.color.colorAccent)),
-
                 singleMatch.range.first,
                 singleMatch.range.last,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -95,7 +94,7 @@ class SongViewVM : ViewModel() {
                 if (soundName[0].isUpperCase())
                     "chord_${soundName.toLowerCase()}_major"
                 else "chord_${soundName.toLowerCase()}_minor"
-//            Log.d(TAG, "Resource: $resourceName")
+
             resultList.add(
                 fragmentContext.resources.getIdentifier(
                     resourceName,
@@ -103,7 +102,6 @@ class SongViewVM : ViewModel() {
                     fragmentContext.packageName
                 )
             )
-//            Log.d(TAG, "ResourceID: ${resultList.last()}")
         }
         return resultList.toTypedArray()
     }
@@ -168,8 +166,6 @@ class SongViewVM : ViewModel() {
             }
 
         return result
-
-
     }
 
     private fun logArray(tag: String, array: Array<String>) {
