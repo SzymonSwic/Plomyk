@@ -231,53 +231,25 @@
             android:strokeWidth="2"
             android:strokeLineCap="square" />
     </group>
-    <group
-        android:translateX="14"
-        android:translateY="43">
-        <path
-            android:pathData="M2 0H2A0 0 0 0 1 2 0V67a0 0 0 0 1 0 0H2a2 2 0 0 1 -2 -2V2A2 2 0 0 1 2 0Z"
-            android:fillColor="#D5D0D2" />
-    </group>
-    <group
-        android:translateX="22"
-        android:translateY="51">
-        <path
-            android:pathData="M12 6A6 6 0 0 1 0 6A6 6 0 0 1 12 6Z"
-            android:fillColor="#D5D0D2" />
-    </group>
-    <group
-        android:translateX="44"
-        android:translateY="64">
-        <path
-            android:pathData="M12 6A6 6 0 0 1 0 6A6 6 0 0 1 12 6Z"
-            android:fillColor="#D5D0D2" />
-    </group>
-    <group
-        android:translateX="44"
-        android:translateY="77">
-        <path
-            android:pathData="M12 6A6 6 0 0 1 0 6A6 6 0 0 1 12 6Z"
-            android:fillColor="#D5D0D2" />
-    </group>
-    <group
-        android:translateX="115"
-        android:translateY="40">
-        <path
-            android:pathData="M0 0H14V72H0V0Z"
-            android:fillColor="#2E161C" />
-    </group>
-    <group
-        android:translateX="1"
-        android:translateY="43">
-        <path
-            android:pathData="M0 0H13V67H0V0Z"
-            android:fillColor="#2E161C" />
-    </group>
-    <group
-        android:translateX="65"
-        android:translateY="28">
-        <path
-            android:pathData="M-0.9878828 -10.32324L-0.9878828 -10.32324Q0.6664141 -10.32324 1.445223 -9.646484Q2.224031 -8.969727 2.224031 -7.573242L2.224031 -7.573242L2.224031 -0.7519531L3.480867 -0.4833984L3.480867 0L0.7093828 0L0.5052813 -1.009766Q-0.7193281 0.2148438 -2.620695 0.2148438L-2.620695 0.2148438Q-5.209563 0.2148438 -5.209563 -2.792969L-5.209563 -2.792969Q-5.209563 -3.802734 -4.817473 -4.463379Q-4.425383 -5.124023 -3.566008 -5.473145Q-2.706633 -5.822266 -1.07382 -5.854492L-1.07382 -5.854492L0.4408281 -5.897461L0.4408281 -7.476563Q0.4408281 -8.518555 0.05948047 -9.012695Q-0.3218672 -9.506836 -1.116789 -9.506836L-1.116789 -9.506836Q-2.191008 -9.506836 -3.082609 -9.001953L-3.082609 -9.001953L-3.447844 -7.745117L-4.049406 -7.745117L-4.049406 -9.947266Q-2.309172 -10.32324 -0.9878828 -10.32324ZM0.4408281 -1.557617L0.4408281 -5.145508L-0.9663984 -5.102539Q-2.405852 -5.048828 -2.916105 -4.543945Q-3.426359 -4.039063 -3.426359 -2.857422L-3.426359 -2.857422Q-3.426359 -0.9667969 -1.890227 -0.9667969L-1.890227 -0.9667969Q-1.159758 -0.9667969 -0.6280195 -1.133301Q-0.09628125 -1.299805 0.4408281 -1.557617L0.4408281 -1.557617Z"
-            android:fillColor="#E9E9E9" />
-    </group>
+    <path
+        android:pathData="M16 43L16 43L16 43v67l0 0l0 0c-1.1 0 -2 -0.9 -2 -2V45C14 43.9 14.9 43 16 43z"
+        android:fillColor="#D5D0D2" />
+    <path
+        android:pathData="M34 57A6 6 0 0 1 22 57A6 6 0 0 1 34 57Z"
+        android:fillColor="#D5D0D2" />
+    <path
+        android:pathData="M56 70A6 6 0 0 1 44 70A6 6 0 0 1 56 70Z"
+        android:fillColor="#D5D0D2" />
+    <path
+        android:pathData="M56 83A6 6 0 0 1 44 83A6 6 0 0 1 56 83Z"
+        android:fillColor="#D5D0D2" />
+    <path
+        android:pathData="M115 40H129V112H115V40Z"
+        android:fillColor="#2E161C" />
+    <path
+        android:pathData="M1 43H14V110H1V43Z"
+        android:fillColor="#2E161C" />
+    <path
+        android:pathData="M67.7 28c-0.1 -0.2 -0.2 -0.6 -0.3 -1.2c-0.9 1 -2 1.4 -3.3 1.4c-1.1 0 -2.1 -0.3 -2.8 -1c-0.7 -0.6 -1.1 -1.5 -1.1 -2.5c0 -1.2 0.5 -2.2 1.4 -2.8c0.9 -0.7 2.2 -1 3.9 -1h1.9V20c0 -0.7 -0.2 -1.2 -0.6 -1.7c-0.4 -0.4 -1 -0.6 -1.8 -0.6c-0.7 0 -1.3 0.2 -1.8 0.5c-0.5 0.4 -0.7 0.8 -0.7 1.3h-2c0 -0.6 0.2 -1.1 0.6 -1.7c0.4 -0.5 1 -1 1.7 -1.3c0.7 -0.3 1.5 -0.5 2.3 -0.5c1.3 0 2.4 0.3 3.1 1c0.8 0.7 1.2 1.6 1.2 2.8v5.3c0 1.1 0.1 1.9 0.4 2.5V28H67.7zM64.4 26.5c0.6 0 1.2 -0.2 1.8 -0.5s1 -0.7 1.2 -1.3v-2.4h-1.6c-2.4 0 -3.7 0.7 -3.7 2.1c0 0.6 0.2 1.1 0.6 1.5C63.2 26.3 63.7 26.5 64.4 26.5z"
+        android:fillColor="#E9E9E9" />
 </vector>
