@@ -1,9 +1,8 @@
 package szymon.swic.plomyk.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -39,6 +38,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
         setupSongListRecyclerView()
+        activity?.title = ""
 
         buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerTestFragment.newInstance()) }
     }

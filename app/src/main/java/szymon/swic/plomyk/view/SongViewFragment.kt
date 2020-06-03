@@ -65,8 +65,8 @@ class SongViewFragment(val song: Song) : Fragment() {
     }
 
     private fun setupView() {
-        text_view_author.text = song.author
-        text_view_title.text = song.title
+        activity?.title = song.title
+
         text_view_song_lyrics.text =
             viewModel.getFormattedSpannableText(song.lyrics, context!!)
 
