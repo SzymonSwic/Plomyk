@@ -33,7 +33,7 @@ class TunerTestVM : ViewModel() {
     val blockSize = bufferSize
     val updateOffset = 0
     val updateDelay: Long = 100
-    val volumeThreshold: Int = 100
+    val volumeThreshold: Int = 32000
     var buffer = ShortArray(blockSize)
 
 //      for recording process:
@@ -83,12 +83,10 @@ class TunerTestVM : ViewModel() {
 
                 val volume = getBufferVolume(buffer)
                 Log.d("Volume", volume.toString())
-                if (volume > 900 && abs(currFreq - lastUpdatedFreq) >= updateOffset) {
+                if (volume < volumeThreshold) {
                     frequency.value = currFreq
                     lastUpdatedFreq = currFreq
                     delay(updateDelay)
-                } else {
-                    frequency.value = 0.0
                 }
             }
         }
