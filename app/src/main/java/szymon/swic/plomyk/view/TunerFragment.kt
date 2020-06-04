@@ -85,7 +85,7 @@ class TunerFragment : Fragment() {
     private fun setFrequencyObserver() {
 
         val frequencyObserver = Observer<Double> {
-            text_curr_frequency.text = it.toString()
+            text_curr_frequency.text = "$it Hz"
         }
 
         viewModel.frequency.observe(this, frequencyObserver)

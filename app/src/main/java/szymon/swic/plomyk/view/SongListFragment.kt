@@ -41,6 +41,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         activity?.title = ""
 
         buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance()) }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

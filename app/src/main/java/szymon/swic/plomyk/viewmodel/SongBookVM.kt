@@ -94,7 +94,7 @@ class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
         addSong(wind)
 
         for (i in 0..10) {
-            addSong(Song(title = "$sampleTitle$i", author = "$sampleAuthor$i", genre = "Turystyczna", lyrics = sampleLyrics))
+            addSong(Song(title = "$sampleTitle$i", author = "$sampleAuthor$i", lyrics = sampleLyrics))
         }
     }
 }

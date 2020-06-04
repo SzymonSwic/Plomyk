@@ -60,6 +60,7 @@ class TunerVM : ViewModel() {
         CoroutineScope(Default).launch {
             recorder?.startRecording()
             RECORDING_FLAG = true
+            frequency.value = 0.0
             getFrequencyStream()
         }
     }

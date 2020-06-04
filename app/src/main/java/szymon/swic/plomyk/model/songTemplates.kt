@@ -3,7 +3,6 @@ package szymon.swic.plomyk.model
 val anioly = Song(
     title = "Bieszczadzkie anioły",
     author = "Stare Dobre Małżeństwo",
-    genre = "Turystyczna",
     lyrics = "[a]\n" +
             "Anioły są takie ciche\n" +
             "[G]\n" +
@@ -62,7 +61,6 @@ val anioly = Song(
 val wind = Song(
     title = "Blowin In The Wind",
     author = "Bob Dylan",
-    genre = "Folk",
     lyrics ="[G]        [C]            [G]\n" +
             "How many roads must a man walk down\n" +
             "           [C]          [G]\n" +
@@ -86,7 +84,6 @@ val wind = Song(
 val tambourine = Song(
     title = "Mr. Tambourine Man",
     author = "Bob Dylan",
-    genre = "Folk",
     lyrics =
     "[G]            [A]              [D]              [G]\n" +
             "Hey Mister Tambourine Man, play a song for me\n" +

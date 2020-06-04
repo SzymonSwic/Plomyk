@@ -2,6 +2,7 @@ package szymon.swic.plomyk.view
 
 import android.animation.ObjectAnimator
 import android.graphics.Typeface
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -53,6 +54,10 @@ class SongViewFragment(val song: Song) : Fragment() {
                 showChordsDialog()
                 true
             }
+            R.id.menu_key_change -> {
+                showKeyChangeButtons()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -79,6 +84,10 @@ class SongViewFragment(val song: Song) : Fragment() {
             Log.d(TAG, "KEY DOWN")
             text_view_song_lyrics.text = viewModel.getTransposedText(-1, context!!)
         }
+
+        button_hide_key_change.setOnClickListener {
+            hideKeyChangeButtons()
+        }
 }
 
     private fun setupAutoscroll() {
@@ -100,6 +109,18 @@ class SongViewFragment(val song: Song) : Fragment() {
     private fun showChordsDialog() {
         val dialog = viewModel.getChordsDialog(activity!!.applicationContext)
         dialog.show(fragmentManager!!, "chords_dialog")
+    }
+
+    private fun showKeyChangeButtons() {
+        button_key_up.visibility = View.VISIBLE
+        button_key_down.visibility = View.VISIBLE
+        button_hide_key_change.visibility = View.VISIBLE
+    }
+
+    private fun hideKeyChangeButtons() {
+        button_key_up.visibility = View.GONE
+        button_key_down.visibility = View.GONE
+        button_hide_key_change.visibility = View.GONE
     }
 
     private fun getTextAnimator(): ObjectAnimator {

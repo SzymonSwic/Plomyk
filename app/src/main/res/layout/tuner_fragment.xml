@@ -25,7 +25,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="nothing is happening"
+            android:text="Brak dźwięku"
             android:textColor="@color/colorAccent"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,53 +53,55 @@
             android:id="@+id/text_chord_higher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="508dp"
+            android:layout_marginBottom="8dp"
             android:text="D#"
             android:textColor="@color/colorAccentGrey"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
     <TextView
             android:id="@+id/text_chord_lower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="508dp"
+            android:layout_marginBottom="8dp"
             android:text="C#"
             android:textColor="@color/colorAccentGrey"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.36" />
 
     <Button
             android:id="@+id/button_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/roboto_bold"
             android:text="STOP"
             android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/button_start"
-            app:layout_constraintHorizontal_bias="0.543"
-            app:layout_constraintStart_toStartOf="@+id/button_start" />
+            app:layout_constraintStart_toStartOf="@+id/button_start"
+            app:layout_constraintTop_toBottomOf="@+id/button_start" />
 
     <Button
             android:id="@+id/button_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/roboto_bold"
             android:text="START"
             android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/button_stop"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/text_curr_frequency" />
