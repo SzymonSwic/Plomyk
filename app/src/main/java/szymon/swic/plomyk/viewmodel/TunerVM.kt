@@ -57,10 +57,11 @@ class TunerVM : ViewModel() {
     fun startAnalysing() {
         Log.d(TAG, "Start Analysing")
         if(recorder == null) setRecorder()
+        frequency.value = 0.0
+
         CoroutineScope(Default).launch {
             recorder?.startRecording()
             RECORDING_FLAG = true
-            frequency.value = 0.0
             getFrequencyStream()
         }
     }
