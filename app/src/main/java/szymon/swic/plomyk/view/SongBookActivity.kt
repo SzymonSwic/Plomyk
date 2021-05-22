@@ -11,7 +11,7 @@ class SongBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(SongListFragment.newInstance())
+        replaceFragment(SplashScreenFragment.newInstance())
     }
 
     fun replaceFragment(fragment: Fragment) {
