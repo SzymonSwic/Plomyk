@@ -33,7 +33,7 @@ class SplashScreenFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         CoroutineScope(Dispatchers.IO).launch {
-            delay(1000)
+            delay(1500)
             (activity as SongBookActivity).replaceFragment(SongListFragment.newInstance())
         }
     }
