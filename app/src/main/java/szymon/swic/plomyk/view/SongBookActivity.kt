@@ -11,14 +11,13 @@ class SongBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(SongListFragment.newInstance())
+        replaceFragment(SplashScreenFragment.newInstance())
     }
 
     fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .addToBackStack(fragment.tag)
             .commit()
     }
 }
