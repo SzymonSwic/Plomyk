@@ -6,6 +6,18 @@ ext {
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     ]
 
+    def retrofitVersion = "2.9.0"
+    def converterVersion = "0.8.0"
+    def okHttpVersion = "4.9.0"
+    def okHttpInterceptorVersion = "4.9.0"
+
+    networkDependencies = [
+            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            converter        : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$converterVersion",
+            okHttp           : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpInterceptorVersion"
+    ]
+
     def junitVersion = "4.13.2"
 
     testDependencies = [
