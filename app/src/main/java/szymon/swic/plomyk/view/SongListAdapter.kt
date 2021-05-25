@@ -97,4 +97,13 @@ class SongListAdapter(
         val original = this
         return mutableListOf<T>().apply { addAll(original) }
     }
+
+    fun setSongs(songs: List<Song>) {
+        if (songs.isNotEmpty()) {
+            this.filterableList.clear()
+        }
+
+        this.filterableList.addAll(songs)
+        notifyDataSetChanged()
+    }
 }

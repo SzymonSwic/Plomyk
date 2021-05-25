@@ -1,39 +1,51 @@
 package szymon.swic.plomyk.viewmodel
 
-import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.model.Song
 import szymon.swic.plomyk.model.SongRepository
-import szymon.swic.plomyk.view.SongListAdapter
 import szymon.swic.plomyk.model.anioly
 import szymon.swic.plomyk.model.wind
 import szymon.swic.plomyk.view.OnSongClickListener
+import szymon.swic.plomyk.view.SongListAdapter
 
 class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
 
     private val TAG = "SongBookVM"
-
     private var TestSongCounter = 1
+
+    private val _songs by lazy {
+        MutableLiveData<List<Song>>()
+            .also { getSongsFromApi(it) }
+    }
+
+    val songs by lazy {
+        _songs.map { songs ->
+            songs.map { it }
+        }
+    }
 
     fun addSong(song: Song) = songRepository.addSong(song)
 
-    fun getAllSongs():MutableList<Song> = songRepository.getAllSongs()
+    fun getAllSongs(): MutableList<Song> = songRepository.getAllSongs()
 
     private fun getAllSongsQuery() = songRepository.getAllSongsQuery()
 
     fun initSongListAdapter(onSongClickListener: OnSongClickListener): SongListAdapter {
         Log.d(TAG, "adapter init")
-        val allSongs = getAllSongs()
-        return SongListAdapter(allSongs, onSongClickListener)
+//        val allSongs = getAllSongs()
+        return SongListAdapter(mutableListOf(), onSongClickListener)
     }
 
 
     //methods for testing
 
     fun addMockedSong() {
-        val sampleLyrics =  "[a]\n" +
+        val sampleLyrics = "[a]\n" +
                 "Anioły są takie ciche\n" +
                 "[G]\n" +
                 "zwłaszcza te w Bieszczadach\n" +
@@ -94,7 +106,26 @@ class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
         addSong(wind)
 
         for (i in 0..10) {
-            addSong(Song(title = "$sampleTitle$i", author = "$sampleAuthor$i", lyrics = sampleLyrics))
+            addSong(
+                Song(
+                    title = "$sampleTitle$i",
+                    author = "$sampleAuthor$i",
+                    lyrics = sampleLyrics
+                )
+            )
+        }
+    }
+
+    private fun getSongsFromApi(songsLiveData: MutableLiveData<List<Song>>) {
+        GetSongsUseCase(songRepository).invoke(
+            params = Unit,
+            scope = viewModelScope
+        ) { result ->
+            result.onSuccess { songsLiveData.value = it }
+            result.onFailure {
+                Log.e("ERROR MESSAGE: ", "${it.message}")
+                Log.e("STACK TRACE: ", "${it.localizedMessage}")
+            }
         }
     }
 }

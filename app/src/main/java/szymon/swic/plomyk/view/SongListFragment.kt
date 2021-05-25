@@ -40,8 +40,13 @@ class SongListFragment : Fragment(), OnSongClickListener {
         setupSongListRecyclerView()
         activity?.title = ""
 
-        buttonTuner.setOnClickListener { (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance()) }
+        buttonTuner.setOnClickListener {
+            (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance())
+        }
 
+        viewModel.songs.observe(this) {
+            songListAdapter.setSongs(it)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,6 +84,10 @@ class SongListFragment : Fragment(), OnSongClickListener {
             layoutManager = LinearLayoutManager(this@SongListFragment.context)
             adapter = songListAdapter
             setHasFixedSize(true)
+        }
+
+        viewModel.songs.observe(this) {
+            songListAdapter.setSongs(it)
         }
     }
 

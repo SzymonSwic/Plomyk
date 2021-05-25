@@ -1,11 +1,13 @@
 package szymon.swic.plomyk.model
 
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import szymon.swic.plomyk.core.exception.ErrorWrapper
+import szymon.swic.plomyk.core.exception.ErrorWrapperImpl
+import szymon.swic.plomyk.core.exception.callOrThrow
+import szymon.swic.plomyk.factories.Injector
 
 
 class SongRepository {
@@ -67,6 +69,15 @@ class SongRepository {
         }
 
         return songList
+    }
+
+    suspend fun getSongsFromApi(): List<Song> {
+        val api = Injector.getRetrofit()
+        val wrapper = ErrorWrapperImpl()
+
+        return callOrThrow(wrapper) {
+            api.getSongs().map { Song(it.title, it.author, it.lyrics) }
+        }
     }
 
     fun getAllSongsQuery(): Query {
