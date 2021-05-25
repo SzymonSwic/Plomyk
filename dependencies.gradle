@@ -1,0 +1,22 @@
+ext {
+    def coroutinesVersion = "1.4.3"
+
+    coroutinesDependencies = [
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    ]
+
+    def junitVersion = "4.13.2"
+
+    testDependencies = [
+            junit: "junit:junit:$junitVersion"
+    ]
+
+    def junitExtVersion = "1.1.2"
+    def espressoVersion = "3.3.0"
+
+    androidTestDependencies = [
+            junit   : "androidx.test.ext:junit:$junitExtVersion",
+            espresso: "androidx.test.espresso:espresso-core:$espressoVersion"
+    ]
+}
