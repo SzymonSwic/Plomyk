@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SongsResponseItem(
+data class SongRemote(
     @SerialName("author") val author: String,
     @SerialName("lyrics") val lyrics: String,
     @SerialName("pub_date") val pubDate: String,
