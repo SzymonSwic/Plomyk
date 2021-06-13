@@ -34,7 +34,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         activity?.title = ""
 
         buttonTuner.setOnClickListener {
-            (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance())
+            (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance(), true)
         }
     }
 
@@ -90,6 +90,6 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     }
 
     override fun onSongClick(target_song: Song) {
-        (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(target_song))
+        (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(target_song), true)
     }
 }

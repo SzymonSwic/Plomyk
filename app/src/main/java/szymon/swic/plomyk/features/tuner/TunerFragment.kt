@@ -67,7 +67,7 @@ class TunerFragment : Fragment() {
             false
         }
         if (!permissionToRecordGranted) (activity as SongBookActivity).replaceFragment(
-            SongListFragment.newInstance()
+            SongListFragment.newInstance(), addToBackStack = true
         )
     }
 

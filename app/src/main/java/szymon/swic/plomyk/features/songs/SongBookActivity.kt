@@ -12,21 +12,14 @@ class SongBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragmentWithoutBackstack(SplashScreenFragment.newInstance())
+        replaceFragment(SplashScreenFragment.newInstance())
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = false) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .addToBackStack("")
-            .commit()
-    }
-
-    fun replaceFragmentWithoutBackstack(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .apply { if (addToBackStack) this.addToBackStack("") }
             .commit()
     }
 }
