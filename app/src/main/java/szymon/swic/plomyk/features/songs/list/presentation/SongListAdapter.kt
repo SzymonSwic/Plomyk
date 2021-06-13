@@ -14,46 +14,35 @@ import java.util.*
 
 
 class SongListAdapter(
-    private val contentOriginal: MutableList<Song>,
-    private val onSongClickListener: OnSongClickListener
+    private val contentOriginal: MutableList<Song>
 ) : RecyclerView.Adapter<SongListAdapter.SongHolder>(), Filterable {
 
     private val TAG = "SongListAdapter"
 
     private var filterableList = contentOriginal.getCopy()
+    lateinit var onSongClickListener: (Song) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
-        Log.d(TAG, "ViewHolder Created")
-        return SongHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.songlist_item, parent, false),
-            onSongClickListener
-        )
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.songlist_item, parent, false)
+
+        return SongHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: SongHolder, position: Int) {
-        holder.bind(filterableList[position])
+        holder.bind(filterableList[position], onSongClickListener)
         Log.d(TAG, "Song Binded")
     }
 
     override fun getItemCount(): Int = filterableList.size
 
-    inner class SongHolder constructor(
-        itemView: View,
-        private var songClickListener: OnSongClickListener
-    ) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class SongHolder constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
 
-        lateinit var target_song: Song
-
-        fun bind(song: Song) {
-            itemView.text_title.text = song.title
-            itemView.text_author.text = song.author
-            target_song = song
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-            songClickListener.onSongClick(target_song)
+        fun bind(song: Song, onSongClicked: (Song) -> Unit) = with(itemView) {
+            text_title.text = song.title
+            text_author.text = song.author
+            setOnClickListener { onSongClicked.invoke(song) }
         }
     }
 

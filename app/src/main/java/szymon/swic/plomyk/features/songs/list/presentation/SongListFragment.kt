@@ -14,8 +14,7 @@ import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragmen
 import szymon.swic.plomyk.features.songs.domain.model.Song
 import szymon.swic.plomyk.features.tuner.TunerFragment
 
-class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment),
-    OnSongClickListener {
+class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment) {
 
     private val TAG = "SongListFragment"
 
@@ -74,7 +73,8 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
 
     private fun setupSongListRecyclerView() {
 
-        songListAdapter = viewModel.initSongListAdapter(this@SongListFragment)
+        songListAdapter = SongListAdapter(mutableListOf())
+        songListAdapter.onSongClickListener = ::onSongClick
 
         songlist_recycler_view.apply {
             layoutManager = LinearLayoutManager(this@SongListFragment.context)
@@ -89,7 +89,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         }
     }
 
-    override fun onSongClick(target_song: Song) {
+    private fun onSongClick(target_song: Song) {
         (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(target_song), true)
     }
 }

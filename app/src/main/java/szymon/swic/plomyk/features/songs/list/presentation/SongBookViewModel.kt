@@ -34,11 +34,6 @@ class SongBookViewModel(
 
 //    private fun getAllSongsQuery() = songRepository.getAllSongsQuery()
 
-    fun initSongListAdapter(onSongClickListener: OnSongClickListener): SongListAdapter {
-        Log.d(TAG, "adapter init")
-//        val allSongs = getAllSongs()
-        return SongListAdapter(mutableListOf(), onSongClickListener)
-    }
 
 
     //methods for testing
