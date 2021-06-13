@@ -116,10 +116,12 @@ class SongBookViewModel(
 //    }
 
     private fun getSongs(songsLiveData: MutableLiveData<List<Song>>) {
-        getSongsUseCase.invoke(
+        setPendingState()
+        getSongsUseCase(
             params = Unit,
             scope = viewModelScope
         ) { result ->
+            setIdleState()
             result.onSuccess { songsLiveData.value = it }
             result.onFailure { handleFailure(it) }
         }
