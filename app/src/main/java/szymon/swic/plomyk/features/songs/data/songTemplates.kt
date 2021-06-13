@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.model
+package szymon.swic.plomyk.features.songs.data
 
 import szymon.swic.plomyk.features.songs.domain.model.Song
 
