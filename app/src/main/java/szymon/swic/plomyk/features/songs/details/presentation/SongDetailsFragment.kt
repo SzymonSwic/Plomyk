@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.core.view.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.songview_fragment.*
 import szymon.swic.plomyk.R
@@ -36,18 +37,10 @@ class SongDetailsFragment(
         inflater.inflate(R.menu.songview_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_chords -> {
-                showChordsDialog()
-                true
-            }
-            R.id.menu_key_change -> {
-                showKeyChangeButtons()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.menu_chords -> showChordsDialog()
+        R.id.menu_key_change -> toggleKeyChangeButtons(isVisible = true)
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun setupView() {
@@ -67,41 +60,37 @@ class SongDetailsFragment(
         }
 
         button_hide_key_change.setOnClickListener {
-            hideKeyChangeButtons()
+            toggleKeyChangeButtons(isVisible = false)
         }
     }
 
     private fun setupAutoscroll() {
 
         text_view_song_lyrics.setOnLongClickListener {
-            Log.d(TAG, "Long Click Event")
             getTextAnimator().start()
             true
         }
 
         text_view_song_lyrics.setOnClickListener {
-            Log.d(TAG, "On Click Event")
             if (getTextAnimator().isRunning) {
                 getTextAnimator().cancel()
             }
         }
     }
 
-    private fun showChordsDialog() {
+    private fun showChordsDialog(): Boolean {
         val dialog = viewModel.getChordsDialog(requireActivity().applicationContext)
         dialog.show(requireFragmentManager(), "chords_dialog")
+
+        return true
     }
 
-    private fun showKeyChangeButtons() {
-        button_key_up.visibility = View.VISIBLE
-        button_key_down.visibility = View.VISIBLE
-        button_hide_key_change.visibility = View.VISIBLE
-    }
+    private fun toggleKeyChangeButtons(isVisible: Boolean): Boolean {
+        button_key_up.isVisible = isVisible
+        button_key_down.isVisible = isVisible
+        button_hide_key_change.isVisible = isVisible
 
-    private fun hideKeyChangeButtons() {
-        button_key_up.visibility = View.GONE
-        button_key_down.visibility = View.GONE
-        button_hide_key_change.visibility = View.GONE
+        return true
     }
 
     private fun getTextAnimator(): ObjectAnimator {

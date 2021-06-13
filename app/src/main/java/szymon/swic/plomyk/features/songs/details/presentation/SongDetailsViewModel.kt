@@ -71,17 +71,12 @@ class SongDetailsViewModel : BaseViewModel() {
         return text
     }
 
-    fun getChordsDialog(fragmentContext: Context): ChordGridDialog {
-        return ChordGridDialog(getChordImagesIds(fragmentContext))
-    }
+    fun getChordsDialog(fragmentContext: Context) =
+        ChordGridDialog(getChordImagesIds(fragmentContext))
 
-    fun getAnimationDuration(textView: TextView): Long {
-        return (textView.lineCount * 700).toLong()
-    }
+    fun getAnimationDuration(textView: TextView): Long = (textView.lineCount * 700).toLong()
 
-    fun getSpannedLyrics(): SpannableStringBuilder {
-        return spannedText
-    }
+    fun getSpannedLyrics(): SpannableStringBuilder = spannedText
 
     private fun getChordImagesIds(fragmentContext: Context): Array<Int> {
         val resultList = mutableListOf<Int>()
