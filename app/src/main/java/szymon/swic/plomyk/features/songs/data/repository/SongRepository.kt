@@ -4,13 +4,15 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
+import szymon.swic.plomyk.core.api.RestApi
 import szymon.swic.plomyk.core.exception.ErrorWrapperImpl
 import szymon.swic.plomyk.core.exception.callOrThrow
-import szymon.swic.plomyk.core.factories.Injector
 import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
-class SongRepository {
+class SongRepository(
+    private val restApi: RestApi
+) {
 
     private val TAG = "SongRepository"
     private val SONGS_COLLECTION = "songs"
@@ -19,16 +21,6 @@ class SongRepository {
 
     init {
         initDatabase()
-    }
-
-    companion object {
-        @Volatile
-        private var instance: SongRepository? = null
-
-        fun getInstance() =
-            instance ?: synchronized(this) {
-                instance ?: SongRepository().also { instance = it }
-            }
     }
 
     private fun initDatabase() {
@@ -72,11 +64,10 @@ class SongRepository {
     }
 
     suspend fun getSongsFromApi(): List<Song> {
-        val api = Injector.getRetrofit()
         val wrapper = ErrorWrapperImpl()
 
         return callOrThrow(wrapper) {
-            api.getSongs().map { Song(it.title, it.author, it.lyrics) }
+            restApi.getSongs().map { Song(it.title, it.author, it.lyrics) }
         }
     }
 

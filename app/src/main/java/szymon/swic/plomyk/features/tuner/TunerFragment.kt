@@ -46,7 +46,7 @@ class TunerFragment : Fragment() {
     }
 
     private fun handlePermission() {
-        if (ContextCompat.checkSelfPermission(this.context!!, Manifest.permission.RECORD_AUDIO)
+        if (ContextCompat.checkSelfPermission(this.requireContext(), Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
         ) {
             requestPermissions(
@@ -89,7 +89,7 @@ class TunerFragment : Fragment() {
             text_curr_frequency.text = "$it Hz"
         }
 
-        viewModel.frequency.observe(this, frequencyObserver)
+        viewModel.frequency.observe(viewLifecycleOwner, frequencyObserver)
     }
 
 }

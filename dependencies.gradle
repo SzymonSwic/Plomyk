@@ -25,6 +25,17 @@ ext {
     ]
 
 
+    def koinVersion = "2.1.6"
+    def koinViewModelVersion = "2.1.6"
+    def koinScopeVersion = "2.1.6"
+
+    diDependencies = [
+            koin         : "io.insert-koin:koin-android:" + koinVersion,
+            koinViewModel: "io.insert-koin:koin-androidx-viewmodel:" + koinViewModelVersion,
+            koinScope    : "io.insert-koin:koin-androidx-scope:" + koinScopeVersion
+    ]
+
+
     def retrofitVersion = "2.9.0"
     def converterVersion = "0.8.0"
     def okHttpVersion = "4.9.0"

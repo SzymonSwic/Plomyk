@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.core.factories.Injector
 import szymon.swic.plomyk.features.songs.SongBookActivity
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
 import szymon.swic.plomyk.features.songs.domain.model.Song
@@ -19,7 +18,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
 
     private val TAG = "SongListFragment"
 
-    private lateinit var viewModel: SongBookViewModel
+    private val viewModel: SongBookViewModel by viewModel()
     private lateinit var songListAdapter: SongListAdapter
     private lateinit var songListRecyclerView: RecyclerView
 
@@ -37,7 +36,6 @@ class SongListFragment : Fragment(), OnSongClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupViewModel()
         setupSongListRecyclerView()
         activity?.title = ""
 
@@ -45,7 +43,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
             (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance())
         }
 
-        viewModel.songs.observe(this) {
+        viewModel.songs.observe(viewLifecycleOwner) {
             songListAdapter.setSongs(it)
         }
     }
@@ -56,7 +54,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = searchItem.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
@@ -67,14 +65,6 @@ class SongListFragment : Fragment(), OnSongClickListener {
             }
         })
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    private fun setupViewModel() {
-        activity?.let {
-            val factory = Injector.getSongBookVMFactory()
-            viewModel = ViewModelProviders.of(this, factory)
-                .get(SongBookViewModel::class.java)
-        }
     }
 
     private fun setupSongListRecyclerView() {

@@ -30,6 +30,7 @@ dependencies {
     implementation networkDependencies.values()
     implementation uiDependencies.values()
     implementation lifecycleDependencies.values()
+    implementation diDependencies.values()
 
     // Firebase
     implementation 'com.google.firebase:firebase-analytics:19.0.0'
