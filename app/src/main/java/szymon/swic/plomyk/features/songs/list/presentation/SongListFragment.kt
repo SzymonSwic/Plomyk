@@ -2,6 +2,7 @@ package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,16 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     override fun initObservers() {
         super.initObservers()
         observeSongs()
+    }
+
+    override fun onIdleState() {
+        super.onIdleState()
+        songlistProgress.isVisible = false
+    }
+
+    override fun onPendingState() {
+        super.onPendingState()
+        songlistProgress.isVisible = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,11 +1,13 @@
 ext {
     def appCompatVersion = "1.3.0"
+    def androidxCoreVersion = "1.5.0"
     def coroutinesVersion = "1.4.3"
     def serializationVersion = "1.2.1"
 
     coreDependencies = [
             fileTree     : fileTree(dir: 'libs', include: ['*.jar']),
             appCompat    : "androidx.appcompat:appcompat:" + appCompatVersion,
+            androidxCore : "androidx.core:core-ktx:" + androidxCoreVersion,
             kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
             serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion",

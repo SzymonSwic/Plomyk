@@ -1,31 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/songlist_recycler_view"
+    <data>
+        <variable
+                name="viewModel"
+                type="szymon.swic.plomyk.features.songs.list.presentation.SongBookViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark" />
+            android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/buttonTuner"
-            android:layout_width="62dp"
-            android:layout_height="57dp"
-            android:layout_alignRight="@id/songlist_recycler_view"
-            android:layout_alignBottom="@id/songlist_recycler_view"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="32dp"
-            android:clickable="true"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:focusable="true"
-            android:scrollbarSize="8dp"
-            app:maxImageSize="104dp"
-            app:srcCompat="@drawable/button_tuner_foreground" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/songlist_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/buttonTuner"
+                android:layout_width="62dp"
+                android:layout_height="57dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:focusable="true"
+                android:scrollbarSize="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/songlist_recycler_view"
+                app:layout_constraintRight_toRightOf="@id/songlist_recycler_view"
+                app:maxImageSize="104dp"
+                app:srcCompat="@drawable/button_tuner_foreground" />
 
-</RelativeLayout>
+        <ProgressBar
+                android:id="@+id/songlistProgress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
