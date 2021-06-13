@@ -1,8 +1,6 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.songs.details.presentation
 
 import android.animation.ObjectAnimator
-import android.graphics.Typeface
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -10,19 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.songview_fragment.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.model.Song
-import szymon.swic.plomyk.viewmodel.SongViewVM
+import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
-class SongViewFragment(val song: Song) : Fragment() {
+class SongDetailsFragment(val song: Song) : Fragment() {
 
     private val TAG = "SongViewFragment";
 
     companion object {
-        fun newInstance(song: Song) = SongViewFragment(song)
+        fun newInstance(song: Song) = SongDetailsFragment(song)
     }
 
-    private lateinit var viewModel: SongViewVM
+    private lateinit var viewModel: SongDetailsViewModel
     private lateinit var animator: ObjectAnimator
 
     override fun onCreateView(
@@ -65,7 +62,7 @@ class SongViewFragment(val song: Song) : Fragment() {
     private fun setupViewModel() {
         activity?.let {
             viewModel = ViewModelProviders.of(it)
-                .get(SongViewVM::class.java)
+                .get(SongDetailsViewModel::class.java)
         }
     }
 

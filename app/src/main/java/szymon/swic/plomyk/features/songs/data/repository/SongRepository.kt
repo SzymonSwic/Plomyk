@@ -1,13 +1,13 @@
-package szymon.swic.plomyk.model
+package szymon.swic.plomyk.features.songs.data.repository
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
-import szymon.swic.plomyk.core.exception.ErrorWrapper
 import szymon.swic.plomyk.core.exception.ErrorWrapperImpl
 import szymon.swic.plomyk.core.exception.callOrThrow
-import szymon.swic.plomyk.factories.Injector
+import szymon.swic.plomyk.core.factories.Injector
+import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
 class SongRepository {

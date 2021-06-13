@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.features.songs.SongBookActivity
+import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 class SplashScreenFragment : Fragment() {
 

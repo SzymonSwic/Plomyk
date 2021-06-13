@@ -1,9 +1,10 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.songs
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.features.splash.SplashScreenFragment
 
 class SongBookActivity : AppCompatActivity() {
 

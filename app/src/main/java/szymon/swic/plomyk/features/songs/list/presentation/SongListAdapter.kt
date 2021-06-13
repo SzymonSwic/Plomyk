@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.songlist_item.view.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.model.Song
+import szymon.swic.plomyk.features.songs.domain.model.Song
 import java.util.*
 
 

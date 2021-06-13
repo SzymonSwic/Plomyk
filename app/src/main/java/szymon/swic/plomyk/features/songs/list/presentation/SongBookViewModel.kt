@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.viewmodel
+package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -6,14 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
-import szymon.swic.plomyk.model.Song
-import szymon.swic.plomyk.model.SongRepository
+import szymon.swic.plomyk.features.songs.domain.model.Song
+import szymon.swic.plomyk.features.songs.data.repository.SongRepository
 import szymon.swic.plomyk.model.anioly
 import szymon.swic.plomyk.model.wind
-import szymon.swic.plomyk.view.OnSongClickListener
-import szymon.swic.plomyk.view.SongListAdapter
 
-class SongBookVM(private val songRepository: SongRepository) : ViewModel() {
+class SongBookViewModel(private val songRepository: SongRepository) : ViewModel() {
 
     private val TAG = "SongBookVM"
     private var TestSongCounter = 1

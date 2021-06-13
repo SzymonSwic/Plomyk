@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.tuner
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,7 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.tuner_fragment.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.viewmodel.TunerVM
+import szymon.swic.plomyk.features.songs.SongBookActivity
+import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 
 class TunerFragment : Fragment() {
@@ -20,7 +21,7 @@ class TunerFragment : Fragment() {
     private var permissionToRecordGranted = false
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
 
-    private lateinit var viewModel: TunerVM
+    private lateinit var viewModel: TunerViewModel
 
     companion object {
         fun newInstance() = TunerFragment()
@@ -73,7 +74,7 @@ class TunerFragment : Fragment() {
     private fun setupViewModel() {
         activity?.let {
             viewModel = ViewModelProviders.of(it)
-                .get(TunerVM::class.java)
+                .get(TunerViewModel::class.java)
         }
     }
 

@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.model
+package szymon.swic.plomyk.features.songs.domain.model
 
 
 data class Song(val title: String = "No name song",

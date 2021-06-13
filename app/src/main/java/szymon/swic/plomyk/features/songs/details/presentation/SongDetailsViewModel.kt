@@ -1,21 +1,17 @@
-package szymon.swic.plomyk.viewmodel
+package szymon.swic.plomyk.features.songs.details.presentation
 
-import android.app.Application
 import android.content.Context
-import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.view.ChordGridDialog
-import java.util.*
+import szymon.swic.plomyk.features.songs.chords.ChordGridDialog
 
 
-class SongViewVM : ViewModel() {
+class SongDetailsViewModel : ViewModel() {
     private val TAG = "SongView VM"
 
     private var CHORDS_ARRAY =

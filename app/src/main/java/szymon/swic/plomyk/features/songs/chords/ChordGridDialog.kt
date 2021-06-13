@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.songs.chords
 
 import android.os.Bundle
 import android.util.Log

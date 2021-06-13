@@ -1,8 +1,7 @@
-package szymon.swic.plomyk.view
+package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -10,15 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.factories.Injector
-import szymon.swic.plomyk.model.Song
-import szymon.swic.plomyk.viewmodel.SongBookVM
+import szymon.swic.plomyk.core.factories.Injector
+import szymon.swic.plomyk.features.songs.SongBookActivity
+import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
+import szymon.swic.plomyk.features.songs.domain.model.Song
+import szymon.swic.plomyk.features.tuner.TunerFragment
 
 class SongListFragment : Fragment(), OnSongClickListener {
 
     private val TAG = "SongListFragment"
 
-    private lateinit var viewModel: SongBookVM
+    private lateinit var viewModel: SongBookViewModel
     private lateinit var songListAdapter: SongListAdapter
     private lateinit var songListRecyclerView: RecyclerView
 
@@ -72,7 +73,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
         activity?.let {
             val factory = Injector.getSongBookVMFactory()
             viewModel = ViewModelProviders.of(this, factory)
-                .get(SongBookVM::class.java)
+                .get(SongBookViewModel::class.java)
         }
     }
 
@@ -92,6 +93,6 @@ class SongListFragment : Fragment(), OnSongClickListener {
     }
 
     override fun onSongClick(target_song: Song) {
-        (activity as SongBookActivity).replaceFragment(SongViewFragment.newInstance(target_song))
+        (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(target_song))
     }
 }

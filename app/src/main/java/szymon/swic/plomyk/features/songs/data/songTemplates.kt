@@ -1,5 +1,7 @@
 package szymon.swic.plomyk.model
 
+import szymon.swic.plomyk.features.songs.domain.model.Song
+
 val anioly = Song(
     title = "Bieszczadzkie anioły",
     author = "Stare Dobre Małżeństwo",

@@ -1,8 +1,8 @@
 package szymon.swic.plomyk.features.songs.domain
 
 import szymon.swic.plomyk.core.base.UseCase
-import szymon.swic.plomyk.model.Song
-import szymon.swic.plomyk.model.SongRepository
+import szymon.swic.plomyk.features.songs.domain.model.Song
+import szymon.swic.plomyk.features.songs.data.repository.SongRepository
 
 class GetSongsUseCase(private val songRepository: SongRepository) :
     UseCase<List<Song>, Unit>() {

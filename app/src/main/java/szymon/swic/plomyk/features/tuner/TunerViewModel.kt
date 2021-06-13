@@ -1,11 +1,9 @@
-package szymon.swic.plomyk.viewmodel
+package szymon.swic.plomyk.features.tuner
 
-import android.Manifest
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,12 +12,9 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
-import kotlin.math.abs
 import kotlin.math.roundToInt
-import kotlin.random.Random
 
-class TunerVM : ViewModel() {
+class TunerViewModel : ViewModel() {
 
 //      parameters for recorder configuration:
 

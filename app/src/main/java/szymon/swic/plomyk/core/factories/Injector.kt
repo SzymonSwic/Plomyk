@@ -1,6 +1,6 @@
-package szymon.swic.plomyk.factories
+package szymon.swic.plomyk.core.factories
 
-import szymon.swic.plomyk.model.SongRepository
+import szymon.swic.plomyk.features.songs.data.repository.SongRepository
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -9,7 +9,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import szymon.swic.plomyk.core.api.RestApi
-import szymon.swic.plomyk.model.Song
+import szymon.swic.plomyk.features.songs.domain.model.Song
 
 object Injector {
 
