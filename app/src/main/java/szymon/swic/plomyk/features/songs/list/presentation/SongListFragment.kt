@@ -86,7 +86,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     @SuppressLint("RestrictedApi")
     private fun observeSongs() {
         viewModel.songs.observe(viewLifecycleOwner) {
-            if (super.hasOptionsMenu()) setHasOptionsMenu(true)
+            if (!hasOptionsMenu()) setHasOptionsMenu(true)
             songListAdapter.setSongs(it)
         }
     }
