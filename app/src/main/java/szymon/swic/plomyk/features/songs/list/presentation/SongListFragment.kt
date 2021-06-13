@@ -1,5 +1,6 @@
 package szymon.swic.plomyk.features.songs.list.presentation
 
+import android.annotation.SuppressLint
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -82,9 +83,10 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun observeSongs() {
         viewModel.songs.observe(viewLifecycleOwner) {
-            if (!hasOptionsMenu()) setHasOptionsMenu(true)
+            if (super.hasOptionsMenu()) setHasOptionsMenu(true)
             songListAdapter.setSongs(it)
         }
     }
