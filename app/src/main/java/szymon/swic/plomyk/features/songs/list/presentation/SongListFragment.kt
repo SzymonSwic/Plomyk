@@ -77,7 +77,7 @@ class SongListFragment : Fragment(), OnSongClickListener {
             setHasFixedSize(true)
         }
 
-        viewModel.songs.observe(this) {
+        viewModel.songs.observe(viewLifecycleOwner) {
             songListAdapter.setSongs(it)
         }
     }
