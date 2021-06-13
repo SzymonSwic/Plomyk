@@ -121,10 +121,7 @@ class SongBookViewModel(
             scope = viewModelScope
         ) { result ->
             result.onSuccess { songsLiveData.value = it }
-            result.onFailure {
-                Log.e("ERROR MESSAGE: ", "${it.message}")
-                Log.e("STACK TRACE: ", "${it.localizedMessage}")
-            }
+            result.onFailure { handleFailure(it) }
         }
     }
 }
