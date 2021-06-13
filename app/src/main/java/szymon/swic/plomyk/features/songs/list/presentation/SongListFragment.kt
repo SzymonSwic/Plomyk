@@ -28,7 +28,6 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
 
     override fun initViews() {
         super.initViews()
-        setHasOptionsMenu(true)
         setupSongListRecyclerView()
         activity?.title = ""
 
@@ -64,7 +63,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
             }
 
             override fun onQueryTextChange(newQueryText: String?): Boolean {
-                songListAdapter.filter.filter(newQueryText)
+                songListAdapter.setSongs(viewModel.getFilteredSongs(newQueryText))
                 return false
             }
         })
@@ -73,7 +72,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
 
     private fun setupSongListRecyclerView() {
 
-        songListAdapter = SongListAdapter(mutableListOf())
+        songListAdapter = SongListAdapter()
         songListAdapter.onSongClickListener = ::onSongClick
 
         songlist_recycler_view.apply {
@@ -85,6 +84,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
 
     private fun observeSongs() {
         viewModel.songs.observe(viewLifecycleOwner) {
+            if (!hasOptionsMenu()) setHasOptionsMenu(true)
             songListAdapter.setSongs(it)
         }
     }
