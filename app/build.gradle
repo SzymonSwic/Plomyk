@@ -37,11 +37,6 @@ dependencies {
     implementation lifecycleDependencies.values()
     implementation diDependencies.values()
 
-    // Firebase
-    implementation 'com.google.firebase:firebase-analytics:19.0.0'
-    implementation 'com.google.firebase:firebase-firestore:23.0.1'
-    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
-
     testImplementation testDependencies.values()
 
     androidTestImplementation androidTestDependencies.values()
