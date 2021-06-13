@@ -72,8 +72,8 @@ class SongDetailsFragment(
         }
 
         text_view_song_lyrics.setOnClickListener {
-            if (getTextAnimator().isRunning) {
-                getTextAnimator().cancel()
+            if (this::animator.isInitialized && animator.isRunning) {
+                animator.cancel()
             }
         }
     }
@@ -94,11 +94,10 @@ class SongDetailsFragment(
     }
 
     private fun getTextAnimator(): ObjectAnimator {
-        if (!this::animator.isInitialized) {
             animator = ObjectAnimator
-                .ofInt(song_scrollview, "scrollY", text_view_song_lyrics.bottom)
+                .ofInt(song_scrollview, "scrollY", song_scrollview.scrollY, text_view_song_lyrics.bottom)
                 .setDuration(viewModel.getAnimationDuration(text_view_song_lyrics))
-        }
+
         return animator
     }
 }
