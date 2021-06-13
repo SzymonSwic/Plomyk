@@ -17,11 +17,8 @@ import szymon.swic.plomyk.features.tuner.TunerFragment
 
 class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment) {
 
-    private val TAG = "SongListFragment"
-
     override val viewModel: SongBookViewModel by viewModel()
     private lateinit var songListAdapter: SongListAdapter
-    private lateinit var songListRecyclerView: RecyclerView
 
     companion object {
         fun newInstance() = SongListFragment()
@@ -30,7 +27,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     override fun initViews() {
         super.initViews()
         setupSongListRecyclerView()
-        activity?.title = ""
+        activity?.title = resources.getString(R.string.title_songs)
 
         buttonTuner.setOnClickListener {
             (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance(), true)

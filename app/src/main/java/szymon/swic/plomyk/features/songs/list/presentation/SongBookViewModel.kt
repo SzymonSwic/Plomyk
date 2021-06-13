@@ -1,11 +1,10 @@
 package szymon.swic.plomyk.features.songs.list.presentation
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import szymon.swic.plomyk.core.exception.ErrorMapper
 import szymon.swic.plomyk.core.base.BaseViewModel
+import szymon.swic.plomyk.core.exception.ErrorMapper
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.model.Song
 

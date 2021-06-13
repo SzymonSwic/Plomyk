@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <dimen name="fabMargin">16dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="textSizeTiny">10sp</dimen>
+    <dimen name="textSizeSmall">12sp</dimen>
+    <dimen name="textSizeParagraph">12sp</dimen>
+    <dimen name="textSizeTitle">15sp</dimen>
+    <dimen name="textSizeHeader">20sp</dimen>
+
+    <!-- Span -->
+    <dimen name="spanTiny">4dp</dimen>
+    <dimen name="spanSmall">8dp</dimen>
+    <dimen name="spanMedium">12dp</dimen>
+    <dimen name="spanBig">16dp</dimen>
+    <dimen name="spanFreer">20dp</dimen>
+    <dimen name="spanHuge">25dp</dimen>
+    <dimen name="spanLarge">32dp</dimen>
+    <dimen name="spanGiant">36dp</dimen>
+
+    <!-- Size -->
+    <dimen name="sizeTiny">24dp</dimen>
+    <dimen name="sizeSmall">40dp</dimen>
+    <dimen name="sizeMedium">60dp</dimen>
+    <dimen name="sizeHuge">70dp</dimen>
+    <dimen name="sizeLarge">84dp</dimen>
+    <dimen name="sizeGiant">156dp</dimen>
+</resources>

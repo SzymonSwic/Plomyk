@@ -12,9 +12,10 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import szymon.swic.plomyk.core.base.BaseViewModel
 import kotlin.math.roundToInt
 
-class TunerViewModel : ViewModel() {
+class TunerViewModel : BaseViewModel() {
 
 //      parameters for recorder configuration:
 

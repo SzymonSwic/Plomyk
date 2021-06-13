@@ -11,37 +11,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.tuner_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.songs.SongBookActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 
-class TunerFragment : Fragment() {
+class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
 
+    override val viewModel: TunerViewModel by viewModel()
     private var permissionToRecordGranted = false
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
 
-    private lateinit var viewModel: TunerViewModel
-
     companion object {
         fun newInstance() = TunerFragment()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.tuner_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         handlePermission()
-
-        setupViewModel()
-        setupView()
-
         setFrequencyObserver()
     }
 
@@ -71,14 +61,9 @@ class TunerFragment : Fragment() {
         )
     }
 
-    private fun setupViewModel() {
-        activity?.let {
-            viewModel = ViewModelProviders.of(it)
-                .get(TunerViewModel::class.java)
-        }
-    }
-
-    private fun setupView() {
+    override fun initViews() {
+        super.initViews()
+        activity?.title = resources.getString(R.string.title_tuner)
         button_start.setOnClickListener { viewModel.startAnalysing() }
         button_stop.setOnClickListener { viewModel.stopAnalysing() }
     }
