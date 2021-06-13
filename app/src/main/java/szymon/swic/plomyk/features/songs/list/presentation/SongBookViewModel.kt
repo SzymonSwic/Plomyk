@@ -5,6 +5,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import szymon.swic.plomyk.core.base.BaseViewModel
 import szymon.swic.plomyk.core.exception.ErrorMapper
+import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.model.Song
 
@@ -23,7 +24,7 @@ class SongBookViewModel(
 
     val songs by lazy {
         _songs.map { songs ->
-            songs.map { it }
+            songs.map { SongDisplayable(it) }
         }
     }
 

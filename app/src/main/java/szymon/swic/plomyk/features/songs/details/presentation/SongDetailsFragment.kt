@@ -1,28 +1,27 @@
 package szymon.swic.plomyk.features.songs.details.presentation
 
 import android.animation.ObjectAnimator
-import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.core.view.isVisible
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.songview_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
-import szymon.swic.plomyk.features.songs.domain.model.Song
+import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 
 
 class SongDetailsFragment(
-    val song: Song
+    val song: SongDisplayable
 ) : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {
 
-    private val TAG = "SongViewFragment";
+    private val TAG = "SongViewFragment"
 
     override val viewModel: SongDetailsViewModel by viewModel()
     private lateinit var animator: ObjectAnimator
 
     companion object {
-        fun newInstance(song: Song) = SongDetailsFragment(song)
+        fun newInstance(song: SongDisplayable) = SongDetailsFragment(song)
     }
 
     override fun initViews() {
@@ -94,9 +93,14 @@ class SongDetailsFragment(
     }
 
     private fun getTextAnimator(): ObjectAnimator {
-            animator = ObjectAnimator
-                .ofInt(song_scrollview, "scrollY", song_scrollview.scrollY, text_view_song_lyrics.bottom)
-                .setDuration(viewModel.getAnimationDuration(text_view_song_lyrics))
+        animator = ObjectAnimator
+            .ofInt(
+                song_scrollview,
+                "scrollY",
+                song_scrollview.scrollY,
+                text_view_song_lyrics.bottom
+            )
+            .setDuration(viewModel.getAnimationDuration(text_view_song_lyrics))
 
         return animator
     }

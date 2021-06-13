@@ -12,6 +12,7 @@ import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.songs.SongBookActivity
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
+import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 import szymon.swic.plomyk.features.songs.domain.model.Song
 import szymon.swic.plomyk.features.tuner.TunerFragment
 
@@ -88,7 +89,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         }
     }
 
-    private fun onSongClick(target_song: Song) {
-        (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(target_song), true)
+    private fun onSongClick(song: SongDisplayable) {
+        (activity as SongBookActivity).replaceFragment(SongDetailsFragment.newInstance(song), true)
     }
 }
