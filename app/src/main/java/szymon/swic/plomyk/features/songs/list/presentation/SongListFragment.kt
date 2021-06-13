@@ -1,16 +1,14 @@
 package szymon.swic.plomyk.features.songs.list.presentation
 
-import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.view.*
-import android.widget.LinearLayout
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
+import szymon.swic.plomyk.core.extensions.setupSearchView
 import szymon.swic.plomyk.features.songs.SongBookActivity
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
 import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
@@ -54,22 +52,9 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_bar_menu, menu)
 
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView: SearchView = searchItem.actionView as SearchView
-        searchView.maxWidth = Integer.MAX_VALUE
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newQueryText: String?): Boolean {
-                songListAdapter.setSongs(viewModel.getFilteredSongs(newQueryText))
-                return false
-            }
-        })
-        val searchBar = searchView.findViewById<View>(R.id.search_bar) as LinearLayout
-        searchBar.layoutTransition = LayoutTransition()
+        menu.setupSearchView {
+            songListAdapter.setSongs(viewModel.getFilteredSongs(it))
+        }
 
         super.onCreateOptionsMenu(menu, inflater)
     }
