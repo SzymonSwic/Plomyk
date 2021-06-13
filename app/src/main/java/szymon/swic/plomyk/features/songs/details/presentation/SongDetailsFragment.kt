@@ -4,40 +4,31 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.songview_fragment.*
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
-class SongDetailsFragment(val song: Song) : Fragment() {
+class SongDetailsFragment(
+    val song: Song
+) : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {
 
     private val TAG = "SongViewFragment";
+
+    override val viewModel: SongDetailsViewModel by viewModel()
+    private lateinit var animator: ObjectAnimator
 
     companion object {
         fun newInstance(song: Song) = SongDetailsFragment(song)
     }
 
-    private lateinit var viewModel: SongDetailsViewModel
-    private lateinit var animator: ObjectAnimator
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun initViews() {
+        super.initViews()
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.songview_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setupViewModel()
         setupView()
-
         setupAutoscroll()
-
-        Log.d(TAG, "SongView Fragment Created")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -59,33 +50,26 @@ class SongDetailsFragment(val song: Song) : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
-        activity?.let {
-            viewModel = ViewModelProviders.of(it)
-                .get(SongDetailsViewModel::class.java)
-        }
-    }
-
     private fun setupView() {
         activity?.title = song.title
 
         text_view_song_lyrics.text =
-            viewModel.getFormattedSpannableText(song.lyrics, context!!)
+            viewModel.getFormattedSpannableText(song.lyrics, requireContext())
 
         button_key_up.setOnClickListener {
             Log.d(TAG, "KEY UP")
-            text_view_song_lyrics.text = viewModel.getTransposedText(1, context!!)
+            text_view_song_lyrics.text = viewModel.getTransposedText(1, requireContext())
         }
 
         button_key_down.setOnClickListener {
             Log.d(TAG, "KEY DOWN")
-            text_view_song_lyrics.text = viewModel.getTransposedText(-1, context!!)
+            text_view_song_lyrics.text = viewModel.getTransposedText(-1, requireContext())
         }
 
         button_hide_key_change.setOnClickListener {
             hideKeyChangeButtons()
         }
-}
+    }
 
     private fun setupAutoscroll() {
 
@@ -104,8 +88,8 @@ class SongDetailsFragment(val song: Song) : Fragment() {
     }
 
     private fun showChordsDialog() {
-        val dialog = viewModel.getChordsDialog(activity!!.applicationContext)
-        dialog.show(fragmentManager!!, "chords_dialog")
+        val dialog = viewModel.getChordsDialog(requireActivity().applicationContext)
+        dialog.show(requireFragmentManager(), "chords_dialog")
     }
 
     private fun showKeyChangeButtons() {
@@ -121,7 +105,7 @@ class SongDetailsFragment(val song: Song) : Fragment() {
     }
 
     private fun getTextAnimator(): ObjectAnimator {
-        if(!this::animator.isInitialized) {
+        if (!this::animator.isInitialized) {
             animator = ObjectAnimator
                 .ofInt(song_scrollview, "scrollY", text_view_song_lyrics.bottom)
                 .setDuration(viewModel.getAnimationDuration(text_view_song_lyrics))

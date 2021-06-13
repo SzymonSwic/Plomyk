@@ -8,10 +8,11 @@ import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.core.base.BaseViewModel
 import szymon.swic.plomyk.features.songs.chords.ChordGridDialog
 
 
-class SongDetailsViewModel : ViewModel() {
+class SongDetailsViewModel : BaseViewModel() {
     private val TAG = "SongView VM"
 
     private var CHORDS_ARRAY =
