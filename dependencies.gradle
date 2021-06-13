@@ -1,10 +1,29 @@
 ext {
+    def appCompatVersion = "1.3.0"
     def coroutinesVersion = "1.4.3"
+    def serializationVersion = "1.2.1"
 
-    coroutinesDependencies = [
-            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
-            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    coreDependencies = [
+            fileTree     : fileTree(dir: 'libs', include: ['*.jar']),
+            appCompat    : "androidx.appcompat:appcompat:" + appCompatVersion,
+            kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion",
+            core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     ]
+
+
+    def extensionsVersion = '2.2.0'
+    def livedataKtxVersion = '2.3.1'
+    def viewmodelKtxVersion = '2.3.1'
+
+    lifecycleDependencies = [
+            extensions  : "androidx.lifecycle:lifecycle-extensions:$extensionsVersion",
+            livedataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion",
+            viewmodelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion"
+    ]
+
 
     def retrofitVersion = "2.9.0"
     def converterVersion = "0.8.0"
@@ -18,11 +37,28 @@ ext {
             okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpInterceptorVersion"
     ]
 
+
+    def cardViewVersion = "1.0.0"
+    def constraintLayoutVersion = '2.0.4'
+    def recyclerViewVersion = "1.2.1"
+    def materialDialogsVersion = "3.3.0"
+    def materialVersion = "1.1.0"
+
+    uiDependencies = [
+            cardView        : "androidx.cardview:cardview:$cardViewVersion",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            recyclerView    : "androidx.recyclerview:recyclerview:" + recyclerViewVersion,
+            dialogs         : "com.afollestad.material-dialogs:core:$materialDialogsVersion",
+            material        : "com.google.android.material:material:$materialVersion"
+    ]
+
+
     def junitVersion = "4.13.2"
 
     testDependencies = [
             junit: "junit:junit:$junitVersion"
     ]
+
 
     def junitExtVersion = "1.1.2"
     def espressoVersion = "3.3.0"
