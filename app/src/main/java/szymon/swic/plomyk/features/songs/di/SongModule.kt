@@ -10,7 +10,7 @@ import szymon.swic.plomyk.features.songs.list.presentation.SongBookViewModel
 val songModule = module {
 
     // data
-    factory { SongRepositoryImpl(get(), get()) }
+    factory { SongRepositoryImpl(get(), get(), get()) }
 
     // domain
     factory { GetSongsUseCase(get()) }

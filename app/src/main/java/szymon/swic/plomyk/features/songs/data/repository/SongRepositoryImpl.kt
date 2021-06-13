@@ -3,17 +3,21 @@ package szymon.swic.plomyk.features.songs.data.repository
 import szymon.swic.plomyk.core.api.RestApi
 import szymon.swic.plomyk.core.exception.ErrorWrapper
 import szymon.swic.plomyk.core.exception.callOrThrow
+import szymon.swic.plomyk.core.network.NetworkStateProvider
 import szymon.swic.plomyk.features.songs.domain.SongRepository
 import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
 class SongRepositoryImpl(
     private val restApi: RestApi,
+    private val networkStateProvider: NetworkStateProvider,
     private val errorWrapper: ErrorWrapper
 ) : SongRepository {
 
-    override suspend fun getSongs(): List<Song> {
-        return callOrThrow(errorWrapper) { getSongsFromRemote() }
+    override suspend fun getSongs(): List<Song> = if (networkStateProvider.isNetworkAvailable()) {
+        callOrThrow(errorWrapper) { getSongsFromRemote() }
+    } else {
+        throw Throwable("Brak internetu")
     }
 
     private suspend fun getSongsFromRemote(): List<Song> =
