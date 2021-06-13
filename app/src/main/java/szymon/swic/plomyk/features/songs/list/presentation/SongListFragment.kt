@@ -1,24 +1,24 @@
 package szymon.swic.plomyk.features.songs.list.presentation
 
-import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import szymon.swic.plomyk.R
+import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.songs.SongBookActivity
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
 import szymon.swic.plomyk.features.songs.domain.model.Song
 import szymon.swic.plomyk.features.tuner.TunerFragment
 
-class SongListFragment : Fragment(), OnSongClickListener {
+class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment),
+    OnSongClickListener {
 
     private val TAG = "SongListFragment"
 
-    private val viewModel: SongBookViewModel by viewModel()
+    override val viewModel: SongBookViewModel by viewModel()
     private lateinit var songListAdapter: SongListAdapter
     private lateinit var songListRecyclerView: RecyclerView
 
@@ -26,26 +26,20 @@ class SongListFragment : Fragment(), OnSongClickListener {
         fun newInstance() = SongListFragment()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun initViews() {
+        super.initViews()
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.songlist_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         setupSongListRecyclerView()
         activity?.title = ""
 
         buttonTuner.setOnClickListener {
             (activity as SongBookActivity).replaceFragment(TunerFragment.newInstance())
         }
+    }
 
-        viewModel.songs.observe(viewLifecycleOwner) {
-            songListAdapter.setSongs(it)
-        }
+    override fun initObservers() {
+        super.initObservers()
+        observeSongs()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -76,7 +70,9 @@ class SongListFragment : Fragment(), OnSongClickListener {
             adapter = songListAdapter
             setHasFixedSize(true)
         }
+    }
 
+    private fun observeSongs() {
         viewModel.songs.observe(viewLifecycleOwner) {
             songListAdapter.setSongs(it)
         }

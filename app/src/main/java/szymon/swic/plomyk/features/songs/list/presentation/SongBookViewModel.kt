@@ -2,17 +2,17 @@ package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import szymon.swic.plomyk.core.exception.ErrorMapper
+import szymon.swic.plomyk.core.base.BaseViewModel
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.model.Song
-import szymon.swic.plomyk.features.songs.data.repository.SongRepositoryImpl
 
 class SongBookViewModel(
     private val getSongsUseCase: GetSongsUseCase,
-    private val songRepository: SongRepositoryImpl
-) : ViewModel() {
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper) {
 
     private val TAG = "SongBookVM"
     private var TestSongCounter = 1

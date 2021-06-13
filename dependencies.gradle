@@ -14,14 +14,18 @@ ext {
     ]
 
 
-    def extensionsVersion = '2.2.0'
-    def livedataKtxVersion = '2.3.1'
-    def viewmodelKtxVersion = '2.3.1'
+    def lifecycleCommonVersion = "2.3.1"
+    def lifecycleExtensionsVersion = '2.2.0'
+    def lifecycleLivedataVersion = '2.3.1'
+    def lifecycleLiveeventVersion = "1.2.0"
+    def lifecycleViewmodelVersion = '2.3.1'
 
     lifecycleDependencies = [
-            extensions  : "androidx.lifecycle:lifecycle-extensions:$extensionsVersion",
-            livedataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion",
-            viewmodelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion"
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:" + lifecycleCommonVersion,
+            extensions        : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion",
+            livedataKtx       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataVersion",
+            lifecycleLiveevent: "com.github.hadilq.liveevent:liveevent:" + lifecycleLiveeventVersion,
+            viewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelVersion"
     ]
 
 
