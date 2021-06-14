@@ -35,9 +35,10 @@ dependencies {
     implementation networkDependencies.values()
     implementation uiDependencies.values()
     implementation lifecycleDependencies.values()
+    implementation databaseDependencies.values()
     implementation diDependencies.values()
 
+    kapt kaptDependencies.values()
     testImplementation testDependencies.values()
-
     androidTestImplementation androidTestDependencies.values()
 }

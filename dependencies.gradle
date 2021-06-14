@@ -6,8 +6,8 @@ ext {
 
     coreDependencies = [
             fileTree     : fileTree(dir: 'libs', include: ['*.jar']),
-            appCompat    : "androidx.appcompat:appcompat:" + appCompatVersion,
-            androidxCore : "androidx.core:core-ktx:" + androidxCoreVersion,
+            appCompat    : "androidx.appcompat:appcompat:$appCompatVersion",
+            androidxCore : "androidx.core:core-ktx:$androidxCoreVersion",
             kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
             serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion",
@@ -23,11 +23,19 @@ ext {
     def lifecycleViewmodelVersion = '2.3.1'
 
     lifecycleDependencies = [
-            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:" + lifecycleCommonVersion,
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:$lifecycleCommonVersion",
             extensions        : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion",
             livedataKtx       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataVersion",
-            lifecycleLiveevent: "com.github.hadilq.liveevent:liveevent:" + lifecycleLiveeventVersion,
+            lifecycleLiveevent: "com.github.hadilq.liveevent:liveevent:$lifecycleLiveeventVersion",
             viewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelVersion"
+    ]
+
+
+    def roomVersion = "2.3.0"
+
+    databaseDependencies = [
+            roomRuntime: "androidx.room:room-runtime:$roomVersion",
+            roomKtx    : "androidx.room:room-ktx:$roomVersion"
     ]
 
 
@@ -36,9 +44,9 @@ ext {
     def koinScopeVersion = "2.1.6"
 
     diDependencies = [
-            koin         : "io.insert-koin:koin-android:" + koinVersion,
-            koinViewModel: "io.insert-koin:koin-androidx-viewmodel:" + koinViewModelVersion,
-            koinScope    : "io.insert-koin:koin-androidx-scope:" + koinScopeVersion
+            koin         : "io.insert-koin:koin-android:$koinVersion",
+            koinViewModel: "io.insert-koin:koin-androidx-viewmodel:$koinViewModelVersion",
+            koinScope    : "io.insert-koin:koin-androidx-scope:$koinScopeVersion"
     ]
 
 
@@ -69,6 +77,9 @@ ext {
             material        : "com.google.android.material:material:$materialVersion"
     ]
 
+    kaptDependencies = [
+            room: "androidx.room:room-compiler:$roomVersion"
+    ]
 
     def junitVersion = "4.13.2"
 
