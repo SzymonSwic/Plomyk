@@ -90,7 +90,6 @@
                         android:alpha="1"
                         android:fontFamily="@font/roboto_italic"
                         android:lineSpacingExtra="6dp"
-                        android:text="TextView"
                         android:textColor="@color/colorAccentGrey"
                         android:textSize="16sp"
                         android:typeface="normal"
