@@ -13,7 +13,7 @@ class SplashScreenViewModel(
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper) {
 
-    fun onSplashDismissed() {
+    fun runSplashScreen() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
             splashNavigator.openSongList()
