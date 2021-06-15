@@ -21,10 +21,6 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
     private var permissionToRecordGranted = false
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
 
-    companion object {
-        fun newInstance() = TunerFragment()
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

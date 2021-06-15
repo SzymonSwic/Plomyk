@@ -5,6 +5,7 @@ import android.view.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.songlist_fragment.*
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
@@ -26,7 +27,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         activity?.title = resources.getString(R.string.title_songs)
 
         buttonTuner.setOnClickListener {
-            (activity as MainActivity).replaceFragment(TunerFragment.newInstance(), true)
+            (activity as MainActivity).replaceFragment(get<TunerFragment>(), true)
         }
     }
 
