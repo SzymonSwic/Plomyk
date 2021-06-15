@@ -3,18 +3,13 @@ package szymon.swic.plomyk.features.tuner
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.tuner_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
-import szymon.swic.plomyk.features.songs.SongBookActivity
+import szymon.swic.plomyk.features.MainActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 
@@ -56,7 +51,7 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
         } else {
             false
         }
-        if (!permissionToRecordGranted) (activity as SongBookActivity).replaceFragment(
+        if (!permissionToRecordGranted) (activity as MainActivity).replaceFragment(
             SongListFragment.newInstance(), addToBackStack = true
         )
     }

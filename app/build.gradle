@@ -32,11 +32,12 @@ android {
 
 dependencies {
     implementation coreDependencies.values()
-    implementation networkDependencies.values()
-    implementation uiDependencies.values()
     implementation lifecycleDependencies.values()
+    implementation networkDependencies.values()
     implementation databaseDependencies.values()
     implementation diDependencies.values()
+    implementation navigationDependencies.values()
+    implementation uiDependencies.values()
 
     kapt kaptDependencies.values()
     testImplementation testDependencies.values()

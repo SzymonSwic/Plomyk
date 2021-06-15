@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.features.songs.SongBookActivity
+import szymon.swic.plomyk.features.MainActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
@@ -22,7 +22,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
         CoroutineScope(Dispatchers.IO).launch {
             delay(1500)
-            (activity as SongBookActivity).replaceFragment(SongListFragment.newInstance())
+            (activity as MainActivity).replaceFragment(SongListFragment.newInstance())
         }
     }
 }
