@@ -15,12 +15,12 @@ class SongDetailsFragment(
     val song: SongDisplayable
 ) : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {
 
-    private val TAG = "SongViewFragment"
-
     override val viewModel: SongDetailsViewModel by viewModel()
     private lateinit var animator: ObjectAnimator
 
     companion object {
+        const val SONG_DETAILS_KEY = "songDetailsKey"
+
         fun newInstance(song: SongDisplayable) = SongDetailsFragment(song)
     }
 
@@ -49,12 +49,10 @@ class SongDetailsFragment(
             viewModel.getFormattedSpannableText(song.lyrics, requireContext())
 
         button_key_up.setOnClickListener {
-            Log.d(TAG, "KEY UP")
             text_view_song_lyrics.text = viewModel.getTransposedText(1, requireContext())
         }
 
         button_key_down.setOnClickListener {
-            Log.d(TAG, "KEY DOWN")
             text_view_song_lyrics.text = viewModel.getTransposedText(-1, requireContext())
         }
 

@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.tuner
+package szymon.swic.plomyk.features.tuner.presentation
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,9 +10,8 @@ import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
-import szymon.swic.plomyk.features.MainActivity
+import szymon.swic.plomyk.core.app.MainActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
-import szymon.swic.plomyk.features.splash.SplashScreenFragment
 
 
 class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {

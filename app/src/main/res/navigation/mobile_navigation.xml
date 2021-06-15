@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mobile_navigation"
         app:startDestination="@id/splashScreenFragment">
 
     <fragment
             android:id="@+id/splashScreenFragment"
-            android:name="szymon.swic.plomyk.features.splash.SplashScreenFragment"
-            android:label="SplashScreenFragment" />
+            android:name="szymon.swic.plomyk.features.splash.presentation.SplashScreenFragment"
+            android:label="SplashScreenFragment" >
+        <action
+                android:id="@+id/openSongList"
+                app:destination="@id/songListFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/tunerFragment"
+            android:name="szymon.swic.plomyk.features.tuner.presentation.TunerFragment"
+            android:label="TunerFragment" />
+    <fragment
+            android:id="@+id/songListFragment"
+            android:name="szymon.swic.plomyk.features.songs.list.presentation.SongListFragment"
+            android:label="SongListFragment" >
+        <action
+                android:id="@+id/openTuner"
+                app:destination="@id/tunerFragment" />
+        <action
+                android:id="@+id/openSongDetails"
+                app:destination="@id/songDetailsFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/songDetailsFragment"
+            android:name="szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment"
+            android:label="songview_fragment"
+            tools:layout="@layout/songview_fragment" />
 </navigation>

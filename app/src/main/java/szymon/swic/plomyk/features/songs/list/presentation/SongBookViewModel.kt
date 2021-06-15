@@ -8,14 +8,13 @@ import szymon.swic.plomyk.core.exception.ErrorMapper
 import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.model.Song
+import szymon.swic.plomyk.features.songs.navigation.SongNavigator
 
 class SongBookViewModel(
     private val getSongsUseCase: GetSongsUseCase,
+    private val songNavigator: SongNavigator,
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper) {
-
-    private val TAG = "SongBookVM"
-    private var TestSongCounter = 1
 
     private val _songs by lazy {
         MutableLiveData<List<Song>>()
@@ -43,4 +42,8 @@ class SongBookViewModel(
             result.onFailure { handleFailure(it) }
         }
     }
+
+    fun onSongClicked(song: SongDisplayable) = songNavigator.openSongDetailScreen(song)
+
+    fun onOpenTunerClicked() = songNavigator.openTuner()
 }

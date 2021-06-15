@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features
+package szymon.swic.plomyk.core.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

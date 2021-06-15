@@ -11,10 +11,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.core.extensions.setupSearchView
-import szymon.swic.plomyk.features.MainActivity
+import szymon.swic.plomyk.core.app.MainActivity
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
 import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
-import szymon.swic.plomyk.features.tuner.TunerFragment
 
 
 class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment) {
@@ -28,7 +27,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         activity?.title = resources.getString(R.string.title_songs)
 
         buttonTuner.setOnClickListener {
-            (activity as MainActivity).replaceFragment(get<TunerFragment>(), true)
+            viewModel.onOpenTunerClicked()
         }
     }
 
