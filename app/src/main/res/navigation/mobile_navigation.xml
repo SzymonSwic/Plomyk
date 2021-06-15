@@ -12,7 +12,7 @@
             tools:layout="@layout/fragment_splash_screen">
         <action
                 android:id="@+id/openSongList"
-                app:destination="@id/songListFragment"/>
+                app:destination="@id/songListFragment" />
     </fragment>
     <fragment
             android:id="@+id/tunerFragment"
