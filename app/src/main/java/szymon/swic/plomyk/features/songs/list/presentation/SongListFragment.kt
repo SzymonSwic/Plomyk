@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
@@ -19,7 +20,7 @@ import szymon.swic.plomyk.features.tuner.TunerFragment
 class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment) {
 
     override val viewModel: SongBookViewModel by viewModel()
-    private lateinit var songListAdapter: SongListAdapter
+    private val songListAdapter by inject<SongListAdapter>()
 
     override fun initViews() {
         super.initViews()
@@ -57,12 +58,10 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     }
 
     private fun setupSongListRecyclerView() {
-
-        songListAdapter = SongListAdapter()
         songListAdapter.onSongClickListener = ::onSongClick
 
         songlist_recycler_view.apply {
-            layoutManager = LinearLayoutManager(this@SongListFragment.context)
+            layoutManager = get<LinearLayoutManager>()
             adapter = songListAdapter
             setHasFixedSize(true)
         }
