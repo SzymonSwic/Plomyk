@@ -2,7 +2,9 @@ package szymon.swic.plomyk.features.songs.list.presentation
 
 import android.annotation.SuppressLint
 import android.view.*
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.songlist_fragment.*
 import org.koin.android.ext.android.get
@@ -29,6 +31,8 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
         buttonTuner.setOnClickListener {
             viewModel.onOpenTunerClicked()
         }
+
+        setupBack()
     }
 
     override fun initObservers() {
@@ -76,5 +80,15 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
 
     private fun onSongClick(song: SongDisplayable) {
         (activity as MainActivity).replaceFragment(SongDetailsFragment.newInstance(song), true)
+    }
+
+    //TODO: temporary solution
+    private fun setupBack() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }
