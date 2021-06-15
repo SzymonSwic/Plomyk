@@ -1,8 +1,9 @@
 package szymon.swic.plomyk.features.songs.details.presentation
 
 import android.animation.ObjectAnimator
-import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.songview_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -11,23 +12,19 @@ import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 
 
-class SongDetailsFragment(
-    val song: SongDisplayable
-) : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {
+class SongDetailsFragment : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {
 
     override val viewModel: SongDetailsViewModel by viewModel()
     private lateinit var animator: ObjectAnimator
 
     companion object {
         const val SONG_DETAILS_KEY = "songDetailsKey"
-
-        fun newInstance(song: SongDisplayable) = SongDetailsFragment(song)
     }
 
     override fun initViews() {
         super.initViews()
         setHasOptionsMenu(true)
-        setupView()
+        setupView(getSongArgument())
         setupAutoscroll()
     }
 
@@ -42,7 +39,7 @@ class SongDetailsFragment(
         else -> super.onOptionsItemSelected(item)
     }
 
-    private fun setupView() {
+    private fun setupView(song: SongDisplayable) {
         activity?.title = song.title
 
         text_view_song_lyrics.text =
@@ -77,7 +74,7 @@ class SongDetailsFragment(
 
     private fun showChordsDialog(): Boolean {
         val dialog = viewModel.getChordsDialog(requireActivity().applicationContext)
-        dialog.show(requireFragmentManager(), "chords_dialog")
+        dialog.show(parentFragmentManager, "chords_dialog")
 
         return true
     }
@@ -89,6 +86,8 @@ class SongDetailsFragment(
 
         return true
     }
+
+    private fun getSongArgument() = arguments?.getParcelable<SongDisplayable>(SONG_DETAILS_KEY)!!
 
     private fun getTextAnimator(): ObjectAnimator {
         animator = ObjectAnimator

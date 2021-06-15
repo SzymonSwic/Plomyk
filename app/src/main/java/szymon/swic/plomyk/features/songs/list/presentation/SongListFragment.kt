@@ -61,7 +61,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     }
 
     private fun setupSongListRecyclerView() {
-        songListAdapter.onSongClickListener = ::onSongClick
+        songListAdapter.onSongClickListener = viewModel::onSongClicked
 
         songlist_recycler_view.apply {
             layoutManager = get<LinearLayoutManager>()
@@ -76,10 +76,6 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
             if (!hasOptionsMenu()) setHasOptionsMenu(true)
             songListAdapter.setSongs(it)
         }
-    }
-
-    private fun onSongClick(song: SongDisplayable) {
-        (activity as MainActivity).replaceFragment(SongDetailsFragment.newInstance(song), true)
     }
 
     //TODO: temporary solution

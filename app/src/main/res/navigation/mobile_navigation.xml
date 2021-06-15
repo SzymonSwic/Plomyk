@@ -36,5 +36,9 @@
             android:id="@+id/songDetailsFragment"
             android:name="szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment"
             android:label="songview_fragment"
-            tools:layout="@layout/songview_fragment" />
+            tools:layout="@layout/songview_fragment">
+        <argument
+                android:name="song"
+                app:argType="szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable" />
+    </fragment>
 </navigation>
