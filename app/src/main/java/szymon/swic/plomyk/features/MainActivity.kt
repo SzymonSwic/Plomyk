@@ -3,18 +3,18 @@ package szymon.swic.plomyk.features
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import org.koin.android.ext.android.get
+import androidx.navigation.findNavController
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.features.splash.SplashScreenFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        replaceFragment(get<SplashScreenFragment>())
     }
+
+    override fun onSupportNavigateUp() =
+        findNavController(R.id.nav_host_fragment).navigateUp()
 
     fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = false) {
         supportFragmentManager
