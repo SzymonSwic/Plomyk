@@ -20,10 +20,6 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragm
     override val viewModel: SongBookViewModel by viewModel()
     private lateinit var songListAdapter: SongListAdapter
 
-    companion object {
-        fun newInstance() = SongListFragment()
-    }
-
     override fun initViews() {
         super.initViews()
         setupSongListRecyclerView()

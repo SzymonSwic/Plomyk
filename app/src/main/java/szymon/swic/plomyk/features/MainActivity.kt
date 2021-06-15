@@ -3,6 +3,7 @@ package szymon.swic.plomyk.features
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import org.koin.android.ext.android.get
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.features.splash.SplashScreenFragment
 
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(SplashScreenFragment.newInstance())
+        replaceFragment(get<SplashScreenFragment>())
     }
 
     fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = false) {

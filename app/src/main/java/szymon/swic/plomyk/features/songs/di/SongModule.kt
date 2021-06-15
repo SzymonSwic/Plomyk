@@ -7,6 +7,7 @@ import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsViewMod
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.SongRepository
 import szymon.swic.plomyk.features.songs.list.presentation.SongBookViewModel
+import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 val songModule = module {
 
@@ -17,6 +18,7 @@ val songModule = module {
     factory { GetSongsUseCase(get()) }
 
     // presentation
+    factory { SongListFragment() }
     viewModel { SongBookViewModel(get(), get()) }
     viewModel { SongDetailsViewModel() }
 }

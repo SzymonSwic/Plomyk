@@ -6,11 +6,13 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.tuner_fragment.*
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.features.MainActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
+import szymon.swic.plomyk.features.splash.SplashScreenFragment
 
 
 class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
@@ -31,7 +33,10 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
     }
 
     private fun handlePermission() {
-        if (ContextCompat.checkSelfPermission(this.requireContext(), Manifest.permission.RECORD_AUDIO)
+        if (ContextCompat.checkSelfPermission(
+                this.requireContext(),
+                Manifest.permission.RECORD_AUDIO
+            )
             != PackageManager.PERMISSION_GRANTED
         ) {
             requestPermissions(
@@ -52,7 +57,7 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
             false
         }
         if (!permissionToRecordGranted) (activity as MainActivity).replaceFragment(
-            SongListFragment.newInstance(), addToBackStack = true
+            get<SongListFragment>(), addToBackStack = true
         )
     }
 

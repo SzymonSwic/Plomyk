@@ -7,22 +7,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.features.MainActivity
 import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
 
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
-    companion object {
-        fun newInstance() = SplashScreenFragment()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         CoroutineScope(Dispatchers.IO).launch {
             delay(1500)
-            (activity as MainActivity).replaceFragment(SongListFragment.newInstance())
+            (activity as MainActivity).replaceFragment(get<SongListFragment>())
         }
     }
 }

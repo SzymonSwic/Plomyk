@@ -52,9 +52,9 @@ ext {
     ]
 
 
-    def koinVersion = "2.1.6"
-    def koinViewModelVersion = "2.1.6"
-    def koinScopeVersion = "2.1.6"
+    def koinVersion = "2.2.3"
+    def koinViewModelVersion = "2.2.3"
+    def koinScopeVersion = "2.2.3"
 
     diDependencies = [
             koin         : "io.insert-koin:koin-android:$koinVersion",
