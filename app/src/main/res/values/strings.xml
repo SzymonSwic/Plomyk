@@ -1,5 +1,7 @@
 <resources>
+    <!--  Titles  -->
     <string name="app_name">Płomyk</string>
+    <string name="no_required_permissions">Brak uprawnień</string>
     <!--  Titles  -->
     <string name="title_songs">Lista piosenek</string>
     <string name="title_tuner">Stroik</string>

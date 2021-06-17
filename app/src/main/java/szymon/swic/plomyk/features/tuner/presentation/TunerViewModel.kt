@@ -12,9 +12,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import szymon.swic.plomyk.core.base.BaseViewModel
+import szymon.swic.plomyk.core.exception.ErrorMapper
+import szymon.swic.plomyk.features.tuner.navigation.TunerNavigator
 import kotlin.math.roundToInt
 
-class TunerViewModel : BaseViewModel() {
+class TunerViewModel(
+    private val tunerNavigator: TunerNavigator,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper) {
 
 //      parameters for recorder configuration:
 
@@ -112,4 +117,6 @@ class TunerViewModel : BaseViewModel() {
 
         return frequency.toDouble()
     }
+
+    fun goBack() = tunerNavigator.goBack()
 }
