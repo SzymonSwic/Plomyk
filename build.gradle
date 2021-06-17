@@ -1,5 +1,7 @@
 buildscript {
     ext.kotlin_version = "1.5.10"
+    ext.coroutines_version = "1.4.3"
+    ext.lifecycle_version = "2.3.1"
     ext.room_version = "2.3.0"
     ext.koin_version = "3.1.0"
     ext.navigation_version = "2.3.0"

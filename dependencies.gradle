@@ -1,7 +1,6 @@
 ext {
     def appCompatVersion = "1.3.0"
     def androidxCoreVersion = "1.5.0"
-    def coroutinesVersion = "1.4.3"
     def serializationVersion = "1.2.1"
 
     coreDependencies = [
@@ -11,23 +10,20 @@ ext {
             kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
             serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion",
-            core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
-            android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+            core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     ]
 
 
-    def lifecycleCommonVersion = "2.3.1"
     def lifecycleExtensionsVersion = '2.2.0'
-    def lifecycleLivedataVersion = '2.3.1'
     def lifecycleLiveeventVersion = "1.2.0"
-    def lifecycleViewmodelVersion = '2.3.1'
 
     lifecycleDependencies = [
-            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:$lifecycleCommonVersion",
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
             extensions        : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion",
-            livedataKtx       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataVersion",
+            livedataKtx       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
             lifecycleLiveevent: "com.github.hadilq.liveevent:liveevent:$lifecycleLiveeventVersion",
-            viewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelVersion"
+            viewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     ]
 
 
