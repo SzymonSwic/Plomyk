@@ -33,42 +33,28 @@ ext {
 
     def retrofitVersion = "2.9.0"
     def converterVersion = "0.8.0"
-    def okHttpVersion = "4.9.0"
-    def okHttpInterceptorVersion = "4.9.0"
 
     networkDependencies = [
             retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             converter        : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$converterVersion",
-            okHttp           : "com.squareup.okhttp3:okhttp:$okHttpVersion",
-            okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpInterceptorVersion"
+            okHttp           : "com.squareup.okhttp3:okhttp:$okhttp_version",
+            okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     ]
-
-
-    def roomVersion = "2.3.0"
 
     databaseDependencies = [
-            roomRuntime: "androidx.room:room-runtime:$roomVersion",
-            roomKtx    : "androidx.room:room-ktx:$roomVersion"
+            roomRuntime: "androidx.room:room-runtime:$room_version",
+            roomKtx    : "androidx.room:room-ktx:$room_version"
     ]
-
-
-    def koinVersion = "2.2.3"
-    def koinViewModelVersion = "2.2.3"
-    def koinScopeVersion = "2.2.3"
 
     diDependencies = [
-            koin         : "io.insert-koin:koin-android:$koinVersion",
-            koinViewModel: "io.insert-koin:koin-androidx-viewmodel:$koinViewModelVersion",
-            koinScope    : "io.insert-koin:koin-androidx-scope:$koinScopeVersion"
+            koin         : "io.insert-koin:koin-android:$koin_version",
+            koinViewModel: "io.insert-koin:koin-androidx-viewmodel:$koin_version",
+            koinScope    : "io.insert-koin:koin-androidx-scope:$koin_version"
     ]
 
-
-    def navigationFragmentVersion = "2.3.0"
-    def navigationUiVersion = "2.3.0"
-
     navigationDependencies = [
-            navigationFragment: "androidx.navigation:navigation-fragment-ktx:" + navigationFragmentVersion,
-            navigationUi      : "androidx.navigation:navigation-ui-ktx:" + navigationUiVersion
+            navigationFragment: "androidx.navigation:navigation-fragment-ktx:$navigation_version",
+            navigationUi      : "androidx.navigation:navigation-ui-ktx:$navigation_version"
     ]
 
 
@@ -87,7 +73,7 @@ ext {
     ]
 
     kaptDependencies = [
-            room: "androidx.room:room-compiler:$roomVersion"
+            room: "androidx.room:room-compiler:$room_version"
     ]
 
     def junitVersion = "4.13.2"
