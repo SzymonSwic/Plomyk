@@ -15,7 +15,7 @@ ext {
     ]
 
 
-    def lifecycleExtensionsVersion = '2.2.0'
+    def lifecycleExtensionsVersion = "2.2.0"
     def lifecycleLiveeventVersion = "1.2.0"
 
     lifecycleDependencies = [
@@ -53,7 +53,7 @@ ext {
 
 
     def cardViewVersion = "1.0.0"
-    def constraintLayoutVersion = '2.0.4'
+    def constraintLayoutVersion = "2.0.4"
     def recyclerViewVersion = "1.2.1"
     def materialDialogsVersion = "3.3.0"
     def materialVersion = "1.1.0"
@@ -61,7 +61,7 @@ ext {
     uiDependencies = [
             cardView        : "androidx.cardview:cardview:$cardViewVersion",
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
-            recyclerView    : "androidx.recyclerview:recyclerview:" + recyclerViewVersion,
+            recyclerView    : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
             dialogs         : "com.afollestad.material-dialogs:core:$materialDialogsVersion",
             material        : "com.google.android.material:material:$materialVersion"
     ]
