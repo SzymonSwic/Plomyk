@@ -24,12 +24,7 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
     }
 
     private fun handlePermission() {
-        if (ContextCompat.checkSelfPermission(
-                this.requireContext(),
-                Manifest.permission.RECORD_AUDIO
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
+        if (!PermissionsHelper.hasPermission(requireActivity(), Manifest.permission.RECORD_AUDIO)) {
             val type = PermissionType.RECORD_AUDIO
             requestPermissions(type.permissions, type.requestCode)
         }

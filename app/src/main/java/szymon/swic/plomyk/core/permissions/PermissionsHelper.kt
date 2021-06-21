@@ -9,11 +9,8 @@ import szymon.swic.plomyk.R
 
 object PermissionsHelper {
 
-    fun requestPermissions(activity: Activity, type: PermissionType) = ActivityCompat.requestPermissions(
-        activity,
-        type.permissions,
-        type.requestCode
-    )
+    fun requestPermissions(activity: Activity, type: PermissionType) =
+        ActivityCompat.requestPermissions(activity, type.permissions, type.requestCode)
 
     fun hasPermission(activity: Activity, perm: String): Boolean =
         ContextCompat.checkSelfPermission(activity, perm) == PackageManager.PERMISSION_GRANTED
