@@ -20,9 +20,7 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         handlePermission()
-        setFrequencyObserver()
     }
 
     private fun handlePermission() {
@@ -56,12 +54,14 @@ class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
         button_stop.setOnClickListener { viewModel.stopAnalysing() }
     }
 
-    private fun setFrequencyObserver() {
+    override fun initObservers() {
+        super.initObservers()
+        observeFrequency()
+    }
 
-        val frequencyObserver = Observer<Double> {
+    private fun observeFrequency() {
+        viewModel.frequency.observe(viewLifecycleOwner) {
             text_curr_frequency.text = "$it Hz"
         }
-
-        viewModel.frequency.observe(viewLifecycleOwner, frequencyObserver)
     }
 }
