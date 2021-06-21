@@ -1,10 +1,16 @@
 <resources>
+    <!--  General  -->
+    <string name="cancel">"Anuluj"</string>
+    <string name="settings">"Ustawienia"</string>
     <!--  Titles  -->
     <string name="app_name">Płomyk</string>
     <string name="no_required_permissions">Brak uprawnień</string>
     <!--  Titles  -->
     <string name="title_songs">Lista piosenek</string>
     <string name="title_tuner">Stroik</string>
+    <!-- Permissions -->
+    <string name="permissions_go_to_settings">Brak uprawnień do %1$s. Przejdź do ustawień, aby je przyznać.</string>
+    <string name="no_required_permission">Nie można uruchomić tej funkcji z powodu braku uprawnień</string>
     <!--  Errors  -->
     <string name="error_internal">Houston, we have a server-side problem. Try again in a few minutes.</string>
     <string name="error_bad_request">Validation error. Please check your input parameters.</string>
