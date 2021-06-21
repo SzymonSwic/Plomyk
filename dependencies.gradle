@@ -71,9 +71,15 @@ ext {
     ]
 
     def junitVersion = "4.13.2"
+    def kluentVersion = "1.61"
+    def mockkVersion = "1.10.2"
 
     testDependencies = [
-            junit: "junit:junit:$junitVersion"
+            junit        : "junit:junit:$junitVersion",
+            kluent       : "org.amshove.kluent:kluent:" + kluentVersion,
+            jupiterApi   : "org.junit.jupiter:junit-jupiter-api:$jupiter_version",
+            jupiterParams: "org.junit.jupiter:junit-jupiter-params:$jupiter_version",
+            mockk        : "io.mockk:mockk:$mockkVersion",
     ]
 
 
@@ -83,5 +89,11 @@ ext {
     androidTestDependencies = [
             junit   : "androidx.test.ext:junit:$junitExtVersion",
             espresso: "androidx.test.espresso:espresso-core:$espressoVersion"
+    ]
+
+    def jupiterEngineVersion = "5.6.2"
+
+    testRuntimeOnlyDependencies = [
+            jupiter: "org.junit.jupiter:junit-jupiter-engine:" + jupiterEngineVersion
     ]
 }

@@ -42,4 +42,5 @@ dependencies {
     kapt kaptDependencies.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
+    testRuntimeOnly testRuntimeOnlyDependencies.values()
 }
