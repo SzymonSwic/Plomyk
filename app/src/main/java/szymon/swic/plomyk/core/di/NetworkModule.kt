@@ -10,7 +10,7 @@ import szymon.swic.plomyk.core.api.RestApi
 import java.util.concurrent.TimeUnit
 
 private const val API_URL = "https://plomyk-songbook-api.herokuapp.com/songbook/data/"
-private const val API_TIMEOUT = 10L
+private const val API_TIMEOUT = 12L
 
 val networkModule = module {
     single {
