@@ -29,7 +29,7 @@ abstract class BaseFragment<T: BaseViewModel>(@LayoutRes layoutRes: Int) : Fragm
 
     open fun onPendingState() {}
 
-    protected fun showToast(it: String) = Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+    private fun showToast(it: String) = Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
 
     protected fun showToast(@StringRes stringRes: Int) = showToast(getString(stringRes))
 

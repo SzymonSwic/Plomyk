@@ -6,10 +6,10 @@ import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.TextView
-import androidx.lifecycle.ViewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseViewModel
 import szymon.swic.plomyk.features.songs.chords.ChordGridDialog
+import java.util.*
 
 
 class SongDetailsViewModel : BaseViewModel() {
@@ -85,8 +85,8 @@ class SongDetailsViewModel : BaseViewModel() {
             val soundName = it.removeSurrounding("[", "]")
             val resourceName =
                 if (soundName[0].isUpperCase())
-                    "chord_${soundName.toLowerCase()}_major"
-                else "chord_${soundName.toLowerCase()}_minor"
+                    "chord_${soundName.lowercase(Locale.getDefault())}_major"
+                else "chord_${soundName.lowercase(Locale.getDefault())}_minor"
 
             resultList.add(
                 fragmentContext.resources.getIdentifier(
@@ -131,13 +131,13 @@ class SongDetailsViewModel : BaseViewModel() {
 
         if (currChord[0].isLowerCase()) {
             for (chord in CHORDS_ARRAY.indices) {
-                CHORDS_ARRAY[chord] = CHORDS_ARRAY[chord].toLowerCase()
+                CHORDS_ARRAY[chord] = CHORDS_ARRAY[chord].lowercase(Locale.getDefault())
             }
         }
 
         if (currChord[0].isUpperCase()) {
             for (chord in CHORDS_ARRAY.indices) {
-                CHORDS_ARRAY[chord] = CHORDS_ARRAY[chord].toUpperCase()
+                CHORDS_ARRAY[chord] = CHORDS_ARRAY[chord].uppercase(Locale.getDefault())
             }
         }
         val currSoundIndex = CHORDS_ARRAY.indexOf(currChord)
@@ -146,25 +146,13 @@ class SongDetailsViewModel : BaseViewModel() {
 
     private fun getArraySoundIndex(curr: Int, interval: Int): Int {
         val shift = curr + interval
-        var result: Int
-        //non-boundary case
-        if (shift < 0) {
-            result = CHORDS_ARRAY.size + shift
-        } else
-        //boundary cases
-            if (shift < CHORDS_ARRAY.size) {
-                result = curr + interval
-            } else {
-                result = shift - CHORDS_ARRAY.size
-            }
 
-        return result
-    }
-
-    private fun logArray(tag: String, array: Array<String>) {
-        array.forEach {
-            Log.d(tag, it.toString())
+        return when {
+            //non-boundary case
+            shift < 0 -> CHORDS_ARRAY.size + shift
+            //boundary cases
+            shift < CHORDS_ARRAY.size -> curr + interval
+            else -> shift - CHORDS_ARRAY.size
         }
     }
-
 }

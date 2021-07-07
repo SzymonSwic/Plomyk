@@ -23,23 +23,23 @@ class TunerViewModel(
 
 //      parameters for recorder configuration:
 
-    private val TAG = "TunerVM";
+    private val TAG = "TunerVM"
 
-    val audioSource = MediaRecorder.AudioSource.MIC
-    val samplingFrequency = 8000
-    val channelConfig = AudioFormat.CHANNEL_IN_STEREO
-    val audioEncoding = AudioFormat.ENCODING_PCM_8BIT
-    val bufferSize = AudioRecord.getMinBufferSize(samplingFrequency, channelConfig, audioEncoding)
-    val blockSize = bufferSize
+    private val audioSource = MediaRecorder.AudioSource.MIC
+    private val samplingFrequency = 8000
+    private val channelConfig = AudioFormat.CHANNEL_IN_STEREO
+    private val audioEncoding = AudioFormat.ENCODING_PCM_8BIT
+    private val bufferSize = AudioRecord.getMinBufferSize(samplingFrequency, channelConfig, audioEncoding)
+    private val blockSize = bufferSize
     val updateOffset = 0
-    val updateDelay: Long = 100
-    val volumeThreshold: Int = 32000
+    private val updateDelay: Long = 100
+    private val volumeThreshold: Int = 32000
     var buffer = ShortArray(blockSize)
 
 //      for recording process:
 
     private var recorder: AudioRecord? = null
-    private var RECORDING_FLAG = false
+    private var isRecording = false
 
     val frequency: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
 
@@ -61,7 +61,7 @@ class TunerViewModel(
 
         CoroutineScope(Default).launch {
             recorder?.startRecording()
-            RECORDING_FLAG = true
+            isRecording = true
             getFrequencyStream()
         }
     }
@@ -69,13 +69,13 @@ class TunerViewModel(
     fun stopAnalysing() {
         Log.d(TAG, "Stop Analysing")
         recorder?.stop()
-        RECORDING_FLAG = false
+        isRecording = false
     }
 
 
     private suspend fun getFrequencyStream() {
         Log.d(TAG, "Recording Loop")
-        while (RECORDING_FLAG) {
+        while (isRecording) {
 
             recorder?.read(buffer, 0, blockSize)
             withContext(Main) {
