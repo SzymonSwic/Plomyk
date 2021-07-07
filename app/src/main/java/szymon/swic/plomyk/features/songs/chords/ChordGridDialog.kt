@@ -1,7 +1,6 @@
 package szymon.swic.plomyk.features.songs.chords
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,22 +17,15 @@ class ChordGridDialog(private val listOfChordsImagesId: Array<Int>): DialogFragm
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        Log.d("ChordGridDialog", "Grid inflated")
-        return inflater.inflate(R.layout.chords_dialog, container, true)
-    }
+    ): View? = inflater.inflate(R.layout.chords_dialog, container, true)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        listOfChordsImagesId.forEach {
-            Log.d("ChordGridDialog", it.toString())
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupChordGridRecyclerView()
     }
 
     private fun setupChordGridRecyclerView() {
-        chordGridRecyclerView = view!!.findViewById(R.id.chords_images_recycler_view)
+        chordGridRecyclerView = requireView().findViewById(R.id.chords_images_recycler_view)
         chordGridRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
         chordGridRecyclerView.adapter = ChordGridAdapter(listOfChordsImagesId)
         chordGridRecyclerView.setHasFixedSize(true)
