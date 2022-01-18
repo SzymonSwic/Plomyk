@@ -62,7 +62,7 @@ ext {
     ]
 
     def junitVersion = "4.13.2"
-    def kluentVersion = "1.61"
+    def kluentVersion = "1.68"
     def mockkVersion = "1.10.2"
 
     testDependencies = [
