@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.details.presentation
+package szymon.swic.plomyk.features.songs.presentation.details
 
 import android.content.Context
 import android.text.Spannable

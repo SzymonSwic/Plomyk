@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.details.presentation
+package szymon.swic.plomyk.features.songs.presentation.details
 
 import android.animation.ObjectAnimator
 import android.view.Menu
@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.songview_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
-import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
+import szymon.swic.plomyk.features.songs.presentation.details.model.SongDisplayable
 
 
 class SongDetailsFragment : BaseFragment<SongDetailsViewModel>(R.layout.songview_fragment) {

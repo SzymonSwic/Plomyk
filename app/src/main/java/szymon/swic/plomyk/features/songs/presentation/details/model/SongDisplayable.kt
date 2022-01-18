@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.details.presentation.model
+package szymon.swic.plomyk.features.songs.presentation.details.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

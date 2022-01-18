@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:backgroundTintMode="src_over"
-        tools:context=".features.songs.details.presentation.SongDetailsFragment">
+        tools:context=".features.songs.presentation.details.SongDetailsFragment">
 
     <Button
             android:id="@+id/button_key_up"

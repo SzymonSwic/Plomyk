@@ -2,8 +2,8 @@ package szymon.swic.plomyk.features.songs.navigation
 
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.navigation.FragmentNavigator
-import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
-import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
+import szymon.swic.plomyk.features.songs.presentation.details.SongDetailsFragment
+import szymon.swic.plomyk.features.songs.presentation.details.model.SongDisplayable
 
 class SongNavigatorImpl(
     private val fragmentNavigator: FragmentNavigator

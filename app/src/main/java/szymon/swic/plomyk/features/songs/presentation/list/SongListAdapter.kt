@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_item.view.*
 import szymon.swic.plomyk.R
-import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
+import szymon.swic.plomyk.features.songs.presentation.details.model.SongDisplayable
 
 
 class SongListAdapter : RecyclerView.Adapter<SongListAdapter.SongHolder>() {

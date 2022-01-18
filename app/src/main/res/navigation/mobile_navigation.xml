@@ -34,11 +34,11 @@
     </fragment>
     <fragment
             android:id="@+id/songDetailsFragment"
-            android:name="szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment"
+            android:name="szymon.swic.plomyk.features.songs.presentation.details.SongDetailsFragment"
             android:label="songview_fragment"
             tools:layout="@layout/songview_fragment">
         <argument
                 android:name="song"
-                app:argType="szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable" />
+                app:argType="szymon.swic.plomyk.features.songs.presentation.details.model.SongDisplayable" />
     </fragment>
 </navigation>
