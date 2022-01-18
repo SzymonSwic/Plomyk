@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.chords
+package szymon.swic.plomyk.features.songs.presentation.chords
 
 import android.os.Bundle
 import android.view.LayoutInflater

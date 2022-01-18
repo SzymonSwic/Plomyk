@@ -8,7 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseViewModel
-import szymon.swic.plomyk.features.songs.chords.ChordGridDialog
+import szymon.swic.plomyk.features.songs.presentation.chords.ChordGridDialog
 import java.util.*
 
 
