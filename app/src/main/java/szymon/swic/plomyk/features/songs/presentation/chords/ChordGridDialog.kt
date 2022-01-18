@@ -17,7 +17,7 @@ class ChordGridDialog(private val listOfChordsImagesId: Array<Int>): DialogFragm
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.chords_dialog, container, true)
+    ): View? = inflater.inflate(R.layout.dialog_chords, container, true)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

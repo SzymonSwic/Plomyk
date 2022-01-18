@@ -6,9 +6,9 @@ import szymon.swic.plomyk.features.songs.data.repository.SongRepositoryImpl
 import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsViewModel
 import szymon.swic.plomyk.features.songs.domain.GetSongsUseCase
 import szymon.swic.plomyk.features.songs.domain.SongRepository
-import szymon.swic.plomyk.features.songs.list.presentation.SongBookViewModel
-import szymon.swic.plomyk.features.songs.list.presentation.SongListAdapter
-import szymon.swic.plomyk.features.songs.list.presentation.SongListFragment
+import szymon.swic.plomyk.features.songs.presentation.list.SongBookViewModel
+import szymon.swic.plomyk.features.songs.presentation.list.SongListAdapter
+import szymon.swic.plomyk.features.songs.presentation.list.SongListFragment
 import szymon.swic.plomyk.features.songs.navigation.SongNavigator
 import szymon.swic.plomyk.features.songs.navigation.SongNavigatorImpl
 

@@ -1,6 +1,6 @@
 package szymon.swic.plomyk.features.tuner.presentation
 
-import kotlinx.android.synthetic.main.tuner_fragment.*
+import kotlinx.android.synthetic.main.fragment_tuner.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
@@ -8,7 +8,7 @@ import szymon.swic.plomyk.core.permissions.PermissionType
 import szymon.swic.plomyk.core.permissions.PermissionsHelper
 
 
-class TunerFragment : BaseFragment<TunerViewModel>(R.layout.tuner_fragment) {
+class TunerFragment : BaseFragment<TunerViewModel>(R.layout.fragment_tuner) {
 
     override val viewModel: TunerViewModel by viewModel()
     private var permissionToRecordGranted = false

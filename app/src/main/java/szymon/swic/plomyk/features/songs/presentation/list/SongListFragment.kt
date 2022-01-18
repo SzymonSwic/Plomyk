@@ -1,24 +1,20 @@
-package szymon.swic.plomyk.features.songs.list.presentation
+package szymon.swic.plomyk.features.songs.presentation.list
 
 import android.annotation.SuppressLint
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.songlist_fragment.*
+import kotlinx.android.synthetic.main.fragment_songs_list.*
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.core.extensions.setupSearchView
-import szymon.swic.plomyk.core.app.MainActivity
-import szymon.swic.plomyk.features.songs.details.presentation.SongDetailsFragment
-import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
 
 
-class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.songlist_fragment) {
+class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.fragment_songs_list) {
 
     override val viewModel: SongBookViewModel by viewModel()
     private val songListAdapter by inject<SongListAdapter>()

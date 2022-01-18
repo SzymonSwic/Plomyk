@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.list.presentation
+package szymon.swic.plomyk.features.songs.presentation.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map

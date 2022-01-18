@@ -18,12 +18,12 @@
             android:id="@+id/tunerFragment"
             android:name="szymon.swic.plomyk.features.tuner.presentation.TunerFragment"
             android:label="TunerFragment"
-            tools:layout="@layout/tuner_fragment" />
+            tools:layout="@layout/fragment_tuner" />
     <fragment
             android:id="@+id/songListFragment"
-            android:name="szymon.swic.plomyk.features.songs.list.presentation.SongListFragment"
+            android:name="szymon.swic.plomyk.features.songs.presentation.list.SongListFragment"
             android:label="@string/title_songs"
-            tools:layout="@layout/songlist_fragment">
+            tools:layout="@layout/fragment_songs_list">
         <action
                 android:id="@+id/openTuner"
                 app:destination="@id/tunerFragment"

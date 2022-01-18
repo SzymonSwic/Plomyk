@@ -6,7 +6,7 @@
 
         <variable
                 name="viewModel"
-                type="szymon.swic.plomyk.features.songs.list.presentation.SongBookViewModel" />
+                type="szymon.swic.plomyk.features.songs.presentation.list.SongBookViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

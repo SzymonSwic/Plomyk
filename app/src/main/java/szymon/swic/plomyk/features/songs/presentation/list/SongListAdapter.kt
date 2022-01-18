@@ -1,4 +1,4 @@
-package szymon.swic.plomyk.features.songs.list.presentation
+package szymon.swic.plomyk.features.songs.presentation.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.songlist_item.view.*
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.features.songs.details.presentation.model.SongDisplayable
-import szymon.swic.plomyk.features.songs.domain.model.Song
 
 
 class SongListAdapter : RecyclerView.Adapter<SongListAdapter.SongHolder>() {
