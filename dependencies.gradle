@@ -1,19 +1,16 @@
 ext {
-    def appCompatVersion = "1.3.0"
-    def androidxCoreVersion = "1.5.0"
     def serializationVersion = "1.2.1"
 
     coreDependencies = [
             fileTree     : fileTree(dir: 'libs', include: ['*.jar']),
-            appCompat    : "androidx.appcompat:appcompat:$appCompatVersion",
-            androidxCore : "androidx.core:core-ktx:$androidxCoreVersion",
+            appCompat    : "androidx.appcompat:appcompat:$app_compat_version",
+            androidxCore : "androidx.core:core-ktx:$core_ktx_version",
             kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
             serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion",
             core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
             android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     ]
-
 
     def lifecycleExtensionsVersion = "2.2.0"
     def lifecycleLiveeventVersion = "1.2.0"
@@ -25,13 +22,11 @@ ext {
             lifecycleLiveevent: "com.github.hadilq.liveevent:liveevent:$lifecycleLiveeventVersion",
             viewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     ]
-
-
-    def retrofitVersion = "2.9.0"
+    
     def converterVersion = "0.8.0"
 
     networkDependencies = [
-            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofit         : "com.squareup.retrofit2:retrofit:$retrofit_version",
             converter        : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$converterVersion",
             okHttp           : "com.squareup.okhttp3:okhttp:$okhttp_version",
             okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
