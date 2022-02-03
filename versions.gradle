@@ -1,0 +1,10 @@
+ext {
+    // test
+    mockk_version = "1.12.2"
+    kluent_version = "1.68"
+
+    // android test
+    arch_core_testing_version = "2.1.0"
+    room_testing_version = "2.2.6"
+    coroutines_test_version = "1.2.1"
+}

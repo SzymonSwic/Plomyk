@@ -1,4 +1,6 @@
 buildscript {
+    apply from: 'versions.gradle'
+
     ext {
         kotlin_version = "1.5.32"
         coroutines_version = "1.4.3"
