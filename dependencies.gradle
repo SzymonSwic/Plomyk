@@ -61,10 +61,8 @@ ext {
             room: "androidx.room:room-compiler:$room_version"
     ]
 
-    def junitVersion = "4.13.2"
-
     testDependencies = [
-            junit        : "junit:junit:$junitVersion",
+            junit        : "junit:junit:$junit_version",
             kluent       : "org.amshove.kluent:kluent:$kluent_version",
             jupiterApi   : "org.junit.jupiter:junit-jupiter-api:$jupiter_version",
             jupiterParams: "org.junit.jupiter:junit-jupiter-params:$jupiter_version",
