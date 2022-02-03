@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldContain
 import org.junit.After
 import org.junit.Before
@@ -20,6 +21,13 @@ import szymon.swic.plomyk.features.songs.data.local.model.SongCached
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 class MedUsageDaoTest {
+
+    private val song = SongCached(
+        id = 123,
+        title = "Title",
+        author = "Author",
+        lyrics = "Lyrics"
+    )
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -58,6 +66,21 @@ class MedUsageDaoTest {
             // then
             val songs = dao.getSongs()
             songs.shouldContain(song)
+        }
+    }
+
+    @Test
+    fun givenPreviouslyAddedSongs_whenDaoSaveSongsCalled_thenGetSongsFromDaoContainSavedSong() {
+        runBlockingTest {
+            // given
+            dao.saveSongs(song)
+
+            // when
+            dao.deleteAll()
+
+            // then
+            val songs = dao.getSongs()
+            songs.shouldBeEmpty()
         }
     }
 }
