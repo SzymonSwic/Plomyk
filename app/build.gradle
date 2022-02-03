@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation coreDependencies.values()
+    implementation kotlinDependencies.values()
     implementation lifecycleDependencies.values()
     implementation networkDependencies.values()
     implementation databaseDependencies.values()

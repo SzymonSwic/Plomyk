@@ -1,17 +1,17 @@
 ext {
     coreDependencies = [
-            fileTree     : fileTree(dir: 'libs', include: ['*.jar']),
-            appCompat    : "androidx.appcompat:appcompat:$app_compat_version",
-            androidxCore : "androidx.core:core-ktx:$core_ktx_version",
-            kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
-            serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version",
-            core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
-            android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+            fileTree    : fileTree(dir: 'libs', include: ['*.jar']),
+            appCompat   : "androidx.appcompat:appcompat:$app_compat_version",
+            androidxCore: "androidx.core:core-ktx:$core_ktx_version",
     ]
 
-    def lifecycleExtensionsVersion = "2.2.0"
-    def lifecycleLiveeventVersion = "1.2.0"
+    kotlinDependencies = [
+            kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            reflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
+            serialization: "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+    ]
 
     lifecycleDependencies = [
             lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
@@ -30,7 +30,7 @@ ext {
 
     databaseDependencies = [
             roomRuntime: "androidx.room:room-runtime:$room_version",
-            roomKtx    : "androidx.room:room-ktx:$room_version"
+            roomKtx    : "androidx.room:room-ktx:$room_version",
     ]
 
     diDependencies = [
@@ -41,13 +41,6 @@ ext {
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:$navigation_version",
             navigationUi      : "androidx.navigation:navigation-ui-ktx:$navigation_version"
     ]
-
-
-    def cardViewVersion = "1.0.0"
-    def constraintLayoutVersion = "2.0.4"
-    def recyclerViewVersion = "1.2.1"
-    def materialDialogsVersion = "3.3.0"
-    def materialVersion = "1.1.0"
 
     uiDependencies = [
             cardView        : "androidx.cardview:cardview:$cardViewVersion",
@@ -72,7 +65,7 @@ ext {
     androidTestDependencies = [
             core       : "androidx.arch.core:core-testing:$arch_core_testing_version",
             junit      : "androidx.test.ext:junit:$junitExtVersion",
-            espresso   : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espresso   : "androidx.test.espresso:espresso-core:$espresso_version",
             roomTesting: "androidx.room:room-testing:$room_testing_version",
             kluent     : "org.amshove.kluent:kluent-android:$kluent_version",
             coroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
