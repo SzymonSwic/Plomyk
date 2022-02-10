@@ -1,11 +1,9 @@
 package szymon.swic.plomyk.features.songs.presentation.list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.songlist_item.view.*
-import szymon.swic.plomyk.R
+import szymon.swic.plomyk.databinding.SonglistItemBinding
 import szymon.swic.plomyk.features.songs.presentation.details.model.SongDisplayable
 
 
@@ -15,10 +13,10 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.SongHolder>() {
     lateinit var onSongClickListener: (SongDisplayable) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.songlist_item, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = SonglistItemBinding.inflate(inflater, parent, false)
 
-        return SongHolder(itemView)
+        return SongHolder(view)
     }
 
     override fun onBindViewHolder(holder: SongHolder, position: Int) =
@@ -32,14 +30,16 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.SongHolder>() {
         notifyDataSetChanged()
     }
 
-    class SongHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SongHolder(private val binding: SonglistItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
         fun bind(
             song: SongDisplayable,
             onSongClicked: (SongDisplayable) -> Unit
-        ) = with(itemView) {
-            text_title.text = song.title
-            text_author.text = song.author
-            setOnClickListener { onSongClicked.invoke(song) }
+        ) {
+            binding.textTitle.text = song.title
+            binding.textAuthor.text = song.author
+            binding.root.setOnClickListener { onSongClicked.invoke(song) }
         }
     }
 }
