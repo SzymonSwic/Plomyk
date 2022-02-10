@@ -5,17 +5,19 @@ import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_songs_list.*
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import szymon.swic.plomyk.R
 import szymon.swic.plomyk.core.base.BaseFragment
 import szymon.swic.plomyk.core.extensions.setupSearchView
+import szymon.swic.plomyk.core.utils.viewBinding
+import szymon.swic.plomyk.databinding.FragmentSongsListBinding
 
 
 class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.fragment_songs_list) {
 
+    private val binding by viewBinding<FragmentSongsListBinding>()
     override val viewModel: SongBookViewModel by viewModel()
     private val songListAdapter by inject<SongListAdapter>()
 
@@ -24,7 +26,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.fragment_songs
         setupSongListRecyclerView()
         activity?.title = resources.getString(R.string.title_songs)
 
-        buttonTuner.setOnClickListener {
+        binding.buttonTuner.setOnClickListener {
             viewModel.onOpenTunerClicked()
         }
 
@@ -38,12 +40,12 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.fragment_songs
 
     override fun onIdleState() {
         super.onIdleState()
-        songlistProgress.isVisible = false
+        binding.songlistProgress.isVisible = false
     }
 
     override fun onPendingState() {
         super.onPendingState()
-        songlistProgress.isVisible = true
+        binding.songlistProgress.isVisible = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -59,7 +61,7 @@ class SongListFragment : BaseFragment<SongBookViewModel>(R.layout.fragment_songs
     private fun setupSongListRecyclerView() {
         songListAdapter.onSongClickListener = viewModel::onSongClicked
 
-        songlist_recycler_view.apply {
+        binding.songlistRecyclerView.apply {
             layoutManager = get<LinearLayoutManager>()
             adapter = songListAdapter
             setHasFixedSize(true)
